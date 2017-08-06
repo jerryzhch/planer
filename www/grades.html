@@ -48,7 +48,7 @@
 
 <body>
 
-	
+
 <div class="views">
 	<div class="view view-main">
 		<div class="pages navbar-fixed toolbar-fixed">
@@ -58,7 +58,7 @@
 						<a href="start.html" class="link icon-only">
 							<i class="f7-icons">chevron-left</i>
 						</a>
-					
+
 					<div class="center">My Grades</div>
 						<div class="right">
 							<a href="settings.html" class="link icon-only">
@@ -67,7 +67,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="page-content">
 					<div class="content-block-title">Semesters</div>
 					<div class="list-block">
@@ -77,10 +77,11 @@
 							</li>
 						</ul>
 					</div>
-					
-				<a href="addsem.html" class="button button-big button-round active">Add Semester</a>		
+
+				<a href="#" class="open-popup button button-big button-round active">Add Semester</a>
 				</div>
-				
+
+        <!-- FOOTER -->
 				<div class="toolbar tabbar tabbar-labels">
 					<div class="toolbar-inner">
 						<a href="start.html" class="tab-link">
@@ -88,7 +89,6 @@
 							<span class="tabbar-label">Home</span>
 						</a>
 						<a href="tt.html" class="tab-link">
-						<!--<span class="badge bg-red">5</span>-->
 							<i class="f7-icons">time</i>
 							<span class="tabbar-label">My Timetable</span>
 						</a>
@@ -98,8 +98,91 @@
 						</a>
 					</div>
 				</div>
+
+        <!-- ADD SEMESTER -->
 				<div class="popup">
-					
+          <div class="page-content">
+          <form action="send-here.html" method="GET" class="ajax-submit-onchange">
+          <div class="content-block-title">New Semester</div>
+          <div class="list-block inset">
+            <ul>
+            <li>
+              <div class="item-content">
+              <div class="item-inner">
+                <div class="item-input">
+                <input type="text" placeholder="">
+                </div>
+              </div>
+              </div>
+            </li>
+          </div>
+            <div class="content-block-title">Add your preferred subjects</div>
+            <div class="list-block inset">
+              <ul>
+              <!-- Single chekbox item -->
+              <li>
+                <label class="label-checkbox item-content">
+                <!-- Checked by default -->
+                <input type="checkbox" name="my-checkbox" value="Mathematik">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Mathematik</div>
+                </div>
+                </label>
+              </li>
+              <!-- Another chekbox item -->
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Geometrie">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Geometrie</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Deutsch">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Deutsch</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Englisch">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Englisch</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Französisch">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Französisch</div>
+                </div>
+                </label>
+              </li>
+              </ul>
+            </div>
+            </form>
+          </div>
+          </div>
+
 				</div>
 			</div>
 		</div>
@@ -111,7 +194,6 @@
     <script type="text/javascript" src="js/framework7.min.js"></script>
     <!-- Path to your app js-->
     <script type="text/javascript" src="js/my-app.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
