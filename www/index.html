@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+		<link rel="stylesheet" href="css/framework7.ios.min.css">
+		<link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+		<link rel="stylesheet" href="css/my-app.css">
+		<title>MNG App</title>
+	</head>
+  <!-- Init snippet -->
+
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD5MjBa0qzkpwzN0ThYAuvk8_pqXDG8Ibc",
+    authDomain: "matur18-90b73.firebaseapp.com",
+    databaseURL: "https://matur18-90b73.firebaseio.com",
+    projectId: "matur18-90b73",
+    storageBucket: "matur18-90b73.appspot.com",
+    messagingSenderId: "268822264260"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<!-- Initializes the sign-in widget from FirebaseUI web -->
+<script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
+<script type="text/javascript">
+	// FirebaseUI config.
+	var uiConfig = {
+		signInSuccessUrl: 'start.html',
+		signInOptions: [
+			// Leave the lines as is for the providers you want to offer your users.
+			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+			firebase.auth.EmailAuthProvider.PROVIDER_ID,
+		],
+		// Terms of service url.
+		tosUrl: '<your-tos-url>'
+	};
+
+	// Initialize the FirebaseUI Widget using Firebase.
+	var ui = new firebaseui.auth.AuthUI(firebase.auth());
+	// The start method will wait until the DOM is loaded.
+	ui.start('#firebaseui-auth-container', uiConfig);
+</script>
+<body>
+<!-- The surrounding HTML is left untouched by FirebaseUI.
+		 Your app may use that space for branding, controls and other customizations.-->
+	<div class="views">
+ 		<div class="view view-main">
+ 			<div class="pages navbar-fixed toolbar-fixed">
+ 				<div class="page" data-page="index">
+ 					<div class="navbar">
+ 						<div class="navbar-inner">
+ 							<div class="title">Planer</div>
+ 						</div>
+ 					</div>
+					<div class="page-content">
+						<div class="view">
+							<div class="page">
+								<div class="page-content login-screen-content">
+								 	<div class="login-screen-title">Welcome</div>
+									<div class="list-block-label">
+										<p>App in Development</p>
+									</div>
+									<div id="firebaseui-auth-container"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

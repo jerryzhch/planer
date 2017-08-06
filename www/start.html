@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+		<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+		<link rel="stylesheet" href="css/framework7.ios.min.css">
+		<link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+		<link rel="stylesheet" href="css/my-app.css">
+		<link rel="stylesheet" href="css/framework7-icons.css">
+		<title>MNG App</title>
+	</head>
+<body>
+
+	<div class="views">
+		<div class="view view-main">
+			<div class="pages navbar-fixed toolbar-fixed">
+				<div class="page" data-page="index">
+					<div class="navbar">
+						<div class="navbar-inner">
+						    <div class="left">
+								<a href="#" class="icon-only">
+								</a>
+							</div>
+							<div class="center">News</div>
+							<div class="right">
+								<a href="settings.html" class="link">
+									Settings
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="toolbar tabbar tabbar-labels">
+						<div class="toolbar-inner">
+							<a href="grades.html" class="tab-link">
+								<i class="f7-icons">data</i>
+								<span class="tabbar-label">My Grades</span>
+							</a>
+							<a href="tt.html" class="tab-link">
+							<!--<span class="badge bg-red">5</span>-->
+								<i class="f7-icons">time</i>
+								<span class="tabbar-label">My Timetable</span>
+							</a>
+							<a href="chats.html" class="tab-link">
+								<i class="f7-icons">chats_fill</i>
+								<span class="tabbar-label">Chats</span>
+							</a>
+						</div>
+					</div>
+					<div class="page-content">
+						<div class="content-block-title">Recent News</div>
+						<!-- Inset content block -->
+						<div class="content-block inset">
+							<div class="content-block-inner">
+							<p>European Girls‘ Mathematical Olympiade</p>
+							<p>Am vergangenen Wochenende rechneten 168 Mittelschülerinnen aus 43 Nationen an der European Girls‘ Mathematical Olympiad um Medaillenplätze. An der Organisatorin dieses Anlasses beteiligt war unter anderen Viviane Kehl, Mathematik-Studentin an der ETH Zürich und ehemalige MNG Schülerin.
+								Zwei aktuelle MNG Schülerinnen wurden an der Schlusszeremonie an der Universität Zürich ausgezeichnet: Ivana Klasovita darf sich über eine Bronzemedaille freuen, ihre Zwillingsschwester gewann eine Honorable Mention. Wir als Schule sind stolz über diese tollen Leistungen und gratulieren herzlich!
+								</p>
+							</div>
+						</div>
+						<div class="content-block inset">
+							<div class="content-block-inner">
+								<p>Premiere des AG Theater Projekts 2017 am 1. April</p>
+								<p>Vom 1. bis zum 12. April finden in der Aula die Aufführungen der diesjährigen AG Theater-Produktion SCHWÄRMEN statt; ein Stück, das die Jungautorin Cromme eigens für die AG Theater geschrieben hat. Die unterhaltsame Szenenabfolge mit Text, Musik, Gesang, Bewegung und Tanz handelt von einer Klassenfahrt nach Italien, die es in sich hat...								</p>
+								<a href="docs/theat17.pdf">Flyer</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<!-- Path to Framework7 Library JS-->
+		<script type="text/javascript" src="js/framework7.min.js"></script>
+		<!-- Path to your app js-->
+		<script type="text/javascript" src="js/my-app.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript">
+			app.initialize();
+		</script>
+</body>
+
+</html>
