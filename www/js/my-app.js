@@ -6,7 +6,7 @@ var myApp = new Framework7({
 	pushState: true,
 	cache: true,
 	// Default title for modals
-	modalTitle: 'MNG App',
+	modalTitle: 'Planer',
 	router: true
 });
 
@@ -17,7 +17,7 @@ var $$ = Dom7;
 // Add view
 var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
-
+		domCache: true,
 });
 
 
