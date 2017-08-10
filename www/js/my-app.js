@@ -61,7 +61,7 @@ function createContentPage() {
 	return;
 }
 
-/*var userInput = document.getElementById("userInput");
+var userInput = document.getElementById("userInput");
 userInput.addEventListener("click", newsem);
 
 function newsem(){

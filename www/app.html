@@ -48,9 +48,8 @@
          <div data-page="home" class="page with-subnavbar">
             <div class="page-content hide-bars-on-scroll">
 
+
               <div class="tabs">
-
-
 
                 <div id="news" class="tab active">
                   <div class="content-block">
@@ -104,29 +103,31 @@
           </div>
         </div>
 
-        <!-- SubjectList -->
+
+
+        <!-- LISTED GRADES -->
         <div class="page cached" data-page="semtest">
           <div class="accordion-list">
           <div class="content-block-title">Subjects</div>
-            <div class="list-block accordion-list">
+            <div class="list-block inset accordion-list">
               <ul>
               <li class="accordion-item"><a href="#" class="item-content item-link">
                 <div class="item-inner">
-                  <div class="item-title">Item 1</div>
+                  <div class="item-title">Deutsch</div>
                 </div></a>
                 <div class="accordion-item-content">
                 <div class="content-block">
-                  <p>Item 1 content. Lorem ipsum dolor sit amet...</p>
+                  <p>Kurz</p>
                 </div>
                 </div>
               </li>
               <li class="accordion-item"><a href="#" class="item-content item-link">
                 <div class="item-inner">
-                  <div class="item-title">Item 2</div>
+                  <div class="item-title">Mathematik</div>
                 </div></a>
                 <div class="accordion-item-content">
                 <div class="content-block">
-                  <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+                  <p>P1</p>
                 </div>
                 </div>
               </li>
@@ -141,14 +142,15 @@
 							</a>
           </div>
         </div>
+
+
+
         <!-- ADD SEMESTER -->
 				<div class="popup">
           <div class="page-content">
-          <form action="send-here.html" method="GET" class="ajax-submit-onchange">
+          <!-- <form action="send-here.html" method="SEND" class="ajax-submit-onchange">-->
           <div class="content-block-title">New Semester</div>
           <div class="list-block inset">
-            <ul>
-            <li>
               <div class="item-content">
               <div class="item-inner">
                 <div class="item-input">
@@ -156,36 +158,11 @@
                 </div>
               </div>
               </div>
-            </li>
           </div>
-            <div class="content-block-title">Add your preferred subjects</div>
+            <div class="content-block-title">Select your preferred subjects</div>
             <div class="list-block inset">
               <ul>
-              <!-- Single chekbox item -->
-              <li>
-                <label class="label-checkbox item-content">
-                <!-- Checked by default -->
-                <input type="checkbox" name="my-checkbox" value="Mathematik">
-                <div class="item-media">
-                  <i class="icon icon-form-checkbox"></i>
-                </div>
-                <div class="item-inner">
-                  <div class="item-title">Mathematik</div>
-                </div>
-                </label>
-              </li>
-              <!-- Another chekbox item -->
-              <li>
-                <label class="label-checkbox item-content">
-                <input type="checkbox" name="my-checkbox" value="Geometrie">
-                <div class="item-media">
-                  <i class="icon icon-form-checkbox"></i>
-                </div>
-                <div class="item-inner">
-                  <div class="item-title">Geometrie</div>
-                </div>
-                </label>
-              </li>
+
               <li>
                 <label class="label-checkbox item-content">
                 <input type="checkbox" name="my-checkbox" value="Deutsch">
@@ -219,11 +196,190 @@
                 </div>
                 </label>
               </li>
-              </ul>
-              <div id="userInput"class="close-popup floating-button color-blue"><i class="f7-icons">add</i>
-              </div>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Italienisch">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Italienisch</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Latein">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Latein</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Spanisch">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Spanisch</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Geographie">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Geographie</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Geschichte">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Geschichte</div>
+                </div>
+                </label>
+              </li>
+              <!-- Single chekbox item -->
+              <li>
+                <label class="label-checkbox item-content">
+                <!-- Checked by default -->
+                <input type="checkbox" name="my-checkbox" value="Mathematik">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Mathematik</div>
+                </div>
+                </label>
+              </li>
+              <!-- Another chekbox item -->
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Geometrie">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Geometrie</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="AM">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Angewandte Mathematik</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Biologie">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Biologie</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Chemie">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Chemie</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Physik">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Physik</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="BG">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Bildnerisches Gestalten</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Sport">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Sport</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Musik">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Musik</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Informatik">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Informatik</div>
+                </div>
+                </label>
+              </li>
+              <li>
+                <label class="label-checkbox item-content">
+                <input type="checkbox" name="my-checkbox" value="Ergänzungsfach">
+                <div class="item-media">
+                  <i class="icon icon-form-checkbox"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title">Ergängzungsfach</div>
+                </div>
+                </label>
+              </li>
+            </ul>
             </div>
             </form>
+          </div>
+          <div id="userInput" class="close-popup floating-button color-blue"><i class="f7-icons">add</i>
           </div>
           </div>
 
