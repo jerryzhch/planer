@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.mngapp.zuerich" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>MNG App</name>
+<widget id="com.planerapp.zuerich" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Planer</name>
     <description>
-        An app for my grammar school, MNG Rämibühl.
+        Web-App Development as my matura project.
     </description>
     <author email="jeremiah.agboola@gmail.com" href="http://mngapp.com">
         Jeremiah Agboola
