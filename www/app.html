@@ -82,43 +82,18 @@
                         <form>
                         <ul>
                           <li>
-                            <a href="#semtest" class="item-link list-button">HS 2017</a>
+                            <a href="#semtest" id="demoSem" class="item-link list-button">HS 2017</a>
                           </li>
-                          <li >
-                            <a id="addsem" class="item-link list-button"></a>
-                          </li>
+
                         </ul>
                       </form>
                       </div>
-                        <a onClick="placeholder()" id="addsembtn" href="#" class="button button-big button-round active">Add Semester</a>
+                        <a id="addsembtn" href="#" class="open-popup button button-big button-round active">Add Semester</a>
                         <script>
-                          function placeholder() {
-                              var userInput = document.createElement("INPUT");
-                              document.getElementById("addsem").appendChild(userInput);
-                              // Create Link
-
-                              // Disable "Add Semester" Button
-                              var e = document.getElementById("addsembtn");
-                              e.className += " disabled";
 
 
-                              var x = document.getElementById("plusbtn");
-                              if (x.style.visibility == "hidden") {
-                                  x.style.visibility = "visible";
-                              } else {
-                                  x.style.visibility = "visible";
-                              }
-                          }
                         </script>
                     </div>
-
-
-
-                    <div id="plusbtn" href="#" class="open-popup floating-button color-blue"><i class="f7-icons">add</i>
-                    </div>
-
-                    <script>
-                    </script>
                   </div>
 
 
@@ -140,10 +115,12 @@
 
         <!-- LISTED GRADES -->
         <div class="page cached" data-page="semtest">
+
           <div class="accordion-list">
           <div class="content-block-title">Subjects</div>
             <div class="list-block inset accordion-list">
               <ul>
+
               <li class="accordion-item" id="D"><a href="#" class="item-content item-link">
                 <div class="item-inner">
                   <div class="item-title">Deutsch</div>
@@ -196,11 +173,22 @@
         <!-- ADD SEMESTER -->
 				<div class="popup">
           <div class="page-content">
+
           <!-- <form action="send-here.html" method="SEND" class="ajax-submit-onchange">-->
-            <div class="content-block-title">Select your preferred subjects</div>
+
             <div class="list-block inset">
               <ul>
-
+                <li>
+                <div class="item-content">
+                  <div class="item-media"></div>
+                    <div class="item-inner">
+                      <div class="item-input">
+                        <input type="text" placeholder="Name the semester here" id="userInput">
+                      </div>
+                    </div>
+                </div>
+              </li>
+                <div class="content-block-title">Select your preferred subjects</div>
               <li>
                 <label class="label-checkbox item-content">
                 <input type="checkbox" name="my-checkbox" value="Deutsch">
@@ -385,14 +373,23 @@
           <div  id="newsemadd" class="close-popup floating-button color-blue"><i class="f7-icons">add</i>
           </div>
           <script>
-          function savenreturn(){
+          document.getElementById("newsemadd").addEventListener("click", function(){
 
-            e.className -= " disabled";
-            x.style.visibility = "hidden";
+            var newSemlink = document.createElement("li");
+            var demo = document.getElementById("demoSem");
+            var parentDiv = demo.parentNode;
+            parentDiv.insertBefore(newSemlink, demo);
 
-          }
+            // Create Link
+            var a = document.createElement('a');
+            var linkText = document.createTextNode("new");
+            a.appendChild(linkText);
+            a.title = "my title text";
+            a.href = "http://example.com";
+            document.body.appendChild(a);
+          });
+
           </script>
-
 				</div>
 			</div>
 		</div>
