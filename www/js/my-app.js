@@ -61,14 +61,17 @@ function createContentPage() {
 	return;
 }
 
-/*var userInput = document.getElementById("userInput");
-userInput.addEventListener("click", newsem);
+document.addEventListener("newsemadd", savenreturn)
+function savenreturn(){
 
-function newsem(){
-	var semName =
-	"<span class='ersetzung'>" +
-	document.getElementById("semName").value + "</span>";
+  e.className -= " disabled";
+  x.style.visibility = "hidden";
 
-/*	var semesterlist;
-	semesterlist +=*/
-//}
+}
+function createLink(){
+  var a = document.createElement('a');
+  var linkText =  document.createTextNode("userInput");
+  a.appendChild(linkText);
+  a.href = "#";
+  document.getElementById("linkText").appendChild(a);
+}
