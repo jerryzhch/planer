@@ -51,13 +51,14 @@
 
               <div class="tabs">
 
+                <!-- NEWS Tab -->
                 <div id="news" class="tab active">
                   <div class="content-block">
                     <div class="content-block-title">Recent News</div>
 
         						<div class="content-block inset">
         							<div class="content-block-inner">
-        							<p>European Girls‘ Mathematical Olympiade</p>
+        							<p id="newstitle">European Girls‘ Mathematical Olympiade</p>
         							<p>Am vergangenen Wochenende rechneten 168 Mittelschülerinnen aus 43 Nationen an der European Girls‘ Mathematical Olympiad um Medaillenplätze. An der Organisatorin dieses Anlasses beteiligt war unter anderen Viviane Kehl, Mathematik-Studentin an der ETH Zürich und ehemalige MNG Schülerin.
         								Zwei aktuelle MNG Schülerinnen wurden an der Schlusszeremonie an der Universität Zürich ausgezeichnet: Ivana Klasovita darf sich über eine Bronzemedaille freuen, ihre Zwillingsschwester gewann eine Honorable Mention. Wir als Schule sind stolz über diese tollen Leistungen und gratulieren herzlich!
         								</p>
@@ -65,7 +66,7 @@
         						</div>
         						<div class="content-block inset">
         							<div class="content-block-inner">
-        								<p>Premiere des AG Theater Projekts 2017 am 1. April</p>
+        								<p id="newstitle">Premiere des AG Theater Projekts 2017 am 1. April</p>
         								<p>Vom 1. bis zum 12. April finden in der Aula die Aufführungen der diesjährigen AG Theater-Produktion SCHWÄRMEN statt; ein Stück, das die Jungautorin Cromme eigens für die AG Theater geschrieben hat. Die unterhaltsame Szenenabfolge mit Text, Musik, Gesang, Bewegung und Tanz handelt von einer Klassenfahrt nach Italien, die es in sich hat...								</p>
         								<a href="docs/theat17.pdf">Flyer</a>
         							</div>
@@ -73,23 +74,55 @@
                   </div>
                 </div>
 
-
+                <!-- GRADES Tab -->
                 <div id="grades" class="tab">
                   <div class="content-block">
                     <div class="content-block-title">Semesters</div>
                       <div class="list-block inset" id="semesterlist">
+                        <form>
                         <ul>
                           <li>
                             <a href="#semtest" class="item-link list-button">HS 2017</a>
                           </li>
+                          <li >
+                            <a id="addsem" class="item-link list-button"></a>
+                          </li>
                         </ul>
+                      </form>
                       </div>
-                        <a href="#" class="open-popup button button-big button-round active">Add Semester</a>
+                        <a onClick="placeholder()" id="addsembtn" href="#" class="button button-big button-round active">Add Semester</a>
+                        <script>
+                          function placeholder() {
+                              var userInput = document.createElement("INPUT");
+                              document.getElementById("addsem").appendChild(userInput);
+                              // Create Link
+
+                              // Disable "Add Semester" Button
+                              var e = document.getElementById("addsembtn");
+                              e.className += " disabled";
+
+
+                              var x = document.getElementById("plusbtn");
+                              if (x.style.visibility == "hidden") {
+                                  x.style.visibility = "visible";
+                              } else {
+                                  x.style.visibility = "visible";
+                              }
+                          }
+                        </script>
                     </div>
+
+
+
+                    <div id="plusbtn" href="#" class="open-popup floating-button color-blue"><i class="f7-icons">add</i>
+                    </div>
+
+                    <script>
+                    </script>
                   </div>
 
 
-
+                  <!-- TIMETABLE Tab -->
                 <div id="tt" class="tab">
                   <div class="content-block">
                     <p>Here you can view and add your appointments </p>
@@ -111,17 +144,32 @@
           <div class="content-block-title">Subjects</div>
             <div class="list-block inset accordion-list">
               <ul>
-              <li class="accordion-item"><a href="#" class="item-content item-link">
+              <li class="accordion-item" id="D"><a href="#" class="item-content item-link">
                 <div class="item-inner">
                   <div class="item-title">Deutsch</div>
                 </div></a>
                 <div class="accordion-item-content">
                 <div class="content-block">
-                  <p>Kurz</p>
+                  <div class="data-table card ">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="label-cell">Exams</th>
+                          <th class="numeric-cell">Grade</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="label-cell">Kurztest</td>
+                          <td class="numeric-cell">4.7</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
                 </div>
               </li>
-              <li class="accordion-item"><a href="#" class="item-content item-link">
+              <li class="accordion-item" id="M"><a href="#" class="item-content item-link">
                 <div class="item-inner">
                   <div class="item-title">Mathematik</div>
                 </div></a>
@@ -149,16 +197,6 @@
 				<div class="popup">
           <div class="page-content">
           <!-- <form action="send-here.html" method="SEND" class="ajax-submit-onchange">-->
-          <div class="content-block-title">New Semester</div>
-          <div class="list-block inset">
-              <div class="item-content">
-              <div class="item-inner">
-                <div class="item-input">
-                <input id="semName" type="text" placeholder="Name">
-                </div>
-              </div>
-              </div>
-          </div>
             <div class="content-block-title">Select your preferred subjects</div>
             <div class="list-block inset">
               <ul>
@@ -342,46 +380,18 @@
                 </div>
                 </label>
               </li>
-              <li>
-                <label class="label-checkbox item-content">
-                <input type="checkbox" name="my-checkbox" value="Musik">
-                <div class="item-media">
-                  <i class="icon icon-form-checkbox"></i>
-                </div>
-                <div class="item-inner">
-                  <div class="item-title">Musik</div>
-                </div>
-                </label>
-              </li>
-              <li>
-                <label class="label-checkbox item-content">
-                <input type="checkbox" name="my-checkbox" value="Informatik">
-                <div class="item-media">
-                  <i class="icon icon-form-checkbox"></i>
-                </div>
-                <div class="item-inner">
-                  <div class="item-title">Informatik</div>
-                </div>
-                </label>
-              </li>
-              <li>
-                <label class="label-checkbox item-content">
-                <input type="checkbox" name="my-checkbox" value="Ergänzungsfach">
-                <div class="item-media">
-                  <i class="icon icon-form-checkbox"></i>
-                </div>
-                <div class="item-inner">
-                  <div class="item-title">Ergängzungsfach</div>
-                </div>
-                </label>
-              </li>
-            </ul>
-            </div>
-            </form>
+              </div>
           </div>
-          <div id="userInput" class="close-popup floating-button color-blue"><i class="f7-icons">add</i>
+          <div  id="newsemadd" class="close-popup floating-button color-blue"><i class="f7-icons">add</i>
           </div>
-          </div>
+          <script>
+          function savenreturn(){
+
+            e.className -= " disabled";
+            x.style.visibility = "hidden";
+
+          }
+          </script>
 
 				</div>
 			</div>
