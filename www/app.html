@@ -78,47 +78,22 @@
                 <div id="grades" class="tab">
                   <div class="content-block">
                     <div class="content-block-title">Semesters</div>
-                      <div class="list-block inset" id="semesterlist">
+                      <div class="list-block inset">
                         <form>
-                        <ul>
+                        <ul id="semesterlist">
                           <li>
-                            <a href="#semtest" class="item-link list-button">HS 2017</a>
+                            <a href="#semtest" id="demoSem" class="item-link list-button">HS 2017</a>
                           </li>
-                          <li >
-                            <a id="addsem" class="item-link list-button"></a>
-                          </li>
+
                         </ul>
                       </form>
                       </div>
-                        <a onClick="placeholder()" id="addsembtn" href="#" class="button button-big button-round active">Add Semester</a>
+                        <a id="addsembtn" href="#" class="open-popup button button-big button-round active">Add Semester</a>
                         <script>
-                          function placeholder() {
-                              var userInput = document.createElement("INPUT");
-                              document.getElementById("addsem").appendChild(userInput);
-                              // Create Link
-
-                              // Disable "Add Semester" Button
-                              var e = document.getElementById("addsembtn");
-                              e.className += " disabled";
 
 
-                              var x = document.getElementById("plusbtn");
-                              if (x.style.visibility == "hidden") {
-                                  x.style.visibility = "visible";
-                              } else {
-                                  x.style.visibility = "visible";
-                              }
-                          }
                         </script>
                     </div>
-
-
-
-                    <div id="plusbtn" href="#" class="open-popup floating-button color-blue"><i class="f7-icons">add</i>
-                    </div>
-
-                    <script>
-                    </script>
                   </div>
 
 
@@ -140,10 +115,12 @@
 
         <!-- LISTED GRADES -->
         <div class="page cached" data-page="semtest">
+
           <div class="accordion-list">
           <div class="content-block-title">Subjects</div>
             <div class="list-block inset accordion-list">
               <ul>
+
               <li class="accordion-item" id="D"><a href="#" class="item-content item-link">
                 <div class="item-inner">
                   <div class="item-title">Deutsch</div>
@@ -196,10 +173,24 @@
         <!-- ADD SEMESTER -->
 				<div class="popup">
           <div class="page-content">
+
           <!-- <form action="send-here.html" method="SEND" class="ajax-submit-onchange">-->
-            <div class="content-block-title">Select your preferred subjects</div>
+
             <div class="list-block inset">
               <ul>
+
+                <li>
+                <div class="item-content">
+                  <div class="item-media"></div>
+                    <div class="item-inner">
+                      <div class="item-input">
+                        <input type="text" placeholder="Name the semester here" id="userInput">
+                      </div>
+                    </div>
+                </div>
+              </li>
+
+                <div class="content-block-title">Select your preferred subjects</div>
 
               <li>
                 <label class="label-checkbox item-content">
@@ -382,17 +373,41 @@
               </li>
               </div>
           </div>
-          <div  id="newsemadd" class="close-popup floating-button color-blue"><i class="f7-icons">add</i>
+          <div  id="newsemadd" onclick="createSemester()" class="close-popup floating-button color-blue"><i class="f7-icons">add</i>
           </div>
           <script>
-          function savenreturn(){
+            function createSemester (){
 
-            e.className -= " disabled";
-            x.style.visibility = "hidden";
+          /*  var newSemlink = document.createElement("li");
+            var demo = document.getElementById("demoSem");
+            var parentDiv = demo.parentNode;
+            parentDiv.insertBefore(newSemlink, demo);*/
 
-          }
+            // Create Link
+          /*  var li = document.createElement('li');
+            var userInput = document.getElementById("userInput").value;
+            var a = document.createElement('a');
+            var node = document.createTextNode(userInput);
+            a.href = ("#" +userInput);
+            a.appendChild(node);
+            var destination = document.getElementById(demoSem);
+            destination.appendChild(node);
+            //alert(userInput);*/
+
+            var newItem = document.createElement("LI");
+            var newLink = document.createElement("a");
+            var userInput = document.getElementById("userInput").value;    // Create a <a> node
+            var textnode = document.createTextNode(userInput);
+            newLink.href = ("#" +textnode);
+            newLink.setAttribute("class", "item-link list-button" )                              // Create a text node with userInput
+            newLink.appendChild(textnode);                                // Append the text to <a>
+            newItem.appendChild(newLink);                                 // Append the Link to <li>
+
+            var semlist = document.getElementById("semesterlist");    // Get the <ul> element to insert a new node
+            semlist.insertBefore(newItem, semlist.childNodes[0]);  // Insert <li> before the first child of <ul>
+          };
+
           </script>
-
 				</div>
 			</div>
 		</div>

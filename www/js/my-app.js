@@ -60,14 +60,6 @@ function createContentPage() {
     );
 	return;
 }
-
-document.addEventListener("newsemadd", savenreturn)
-function savenreturn(){
-
-  e.className -= " disabled";
-  x.style.visibility = "hidden";
-
-}
 function createLink(){
   var a = document.createElement('a');
   var linkText =  document.createTextNode("userInput");
