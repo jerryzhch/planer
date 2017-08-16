@@ -12,7 +12,13 @@ onAjaxStart: function (xhr) {
 },
 onAjaxComplete: function (xhr) {
     myApp.hideIndicator();
-}
+},
+
+swipeBackPage: true,
+swipeBackPageThreshold: 0,
+swipeBackPageActiveArea: 30,
+swipeBackPageAnimateShadow: false,
+swipeBackPageAnimateOpacity: false
 });
 
 // Export selectors engine

@@ -114,7 +114,7 @@
 
 
         <!-- LISTED GRADES -->
-        <div class="page cached" data-page="semtest">
+        <div class="page cached" data-page="semtest" id="demopage">
 
           <div class="accordion-list">
           <div class="content-block-title">Subjects</div>
@@ -371,9 +371,17 @@
                 </div>
                 </label>
               </li>
+            </ul>
+              <div class="row">
+                <div class="col-50">
+                  <a  href="#" class="close-popup button button-big active color-red">Cancel</a>
+                </div>
+                <div class="col-50">
+                  <a id="newsemadd" onClick="createSemester()" href="#" class="close-popup button button-big active color-green">Submit</a>
+                </div>
               </div>
-          </div>
-          <div  id="newsemadd" onclick="createSemester()" class="close-popup floating-button color-blue"><i class="f7-icons">add</i>
+            </div>
+
           </div>
           <script>
             function createSemester (){
@@ -405,9 +413,30 @@
 
             var semlist = document.getElementById("semesterlist");    // Get the <ul> element to insert a new node
             semlist.insertBefore(newItem, semlist.childNodes[0]);  // Insert <li> before the first child of <ul>
+
+
+
+            /*Create Page
+            var body = document.createElement("div")
+            document.body.appendChild(body);
+            var newPage = document.createElement("div");
+            newPage.setAttribute("class", "page cached");
+            newPage.setAttribute("data-page", "textnode");
+            var content = document.createElement("div");
+            content.setAttribute("class", "accordion-list");
+            var subjectTitle = document.createElement("div");
+            subjectTitle.setAttribute("class", "content-block-title");
+            subjectTitle.innerHTML = ("Subjects");
+            var newList = document.createElement("div");
+            newList.setAttribute("class", "list-block inset accordion-list");
+            var ul = document.createElement("ul");
+            ul.appendChild(newList);
+            subjectTitle.appendChild(newPage);
+            newList.appendChild(newPage);*/
           };
 
           </script>
+
 				</div>
 			</div>
 		</div>
