@@ -66,10 +66,3 @@ function createContentPage() {
     );
 	return;
 }
-function createLink(){
-  var a = document.createElement('a');
-  var linkText =  document.createTextNode("userInput");
-  a.appendChild(linkText);
-  a.href = "#";
-  document.getElementById("linkText").appendChild(a);
-}

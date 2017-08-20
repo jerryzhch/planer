@@ -43,10 +43,10 @@
     <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="css/my-app.css">
 	<link rel="stylesheet" href="css/framework7-icons.css">
-    <title>MNG App</title>
+    <title>Planix</title>
 </head>
 
-<body>
+<body id="layout" class="layout-white">
 
 <div class="views">
 	<div class="view view-main">
@@ -55,33 +55,33 @@
 				<div class="navbar">
 					<div class="navbar-inner">
 						<div class="left">
-						<a href="start.html" class="link icon-only">
+						<a href="app.html" class="link back">
 							<i class="f7-icons">chevron-left</i>
 						</a>
 						</div>
 					<div class="center">Settings</div>
 					</div>
 				</div>
-					<div class="toolbar tabbar tabbar-labels">
-						<div class="toolbar-inner">
-							<a href="start.html" class="tab-link">
-								<i class="f7-icons">home</i>
-								<span class="tabbar-label">Home</span>
-							</a>
-							<a href="tt.html" class="tab-link">
-							<!--<span class="badge bg-red">5</span>-->
-								<i class="f7-icons">time</i>
-								<span class="tabbar-label">My Timetable</span>
-							</a>
-							<a href="grades.html" class="tab-link">
-								<i class="f7-icons">data</i>
-								<span class="tabbar-label">My Grades</span>
-							</a>
-						</div>
-					</div>
+
+
 				<div class="page-content">
 					<p>Here you can adjust the functionality of the App</p>
-					<a href="index.html" id="btnLogout" class="button button-fill button-big color-yellow">Log Out</a>
+					<a href="index.html" id="btnLogout" class="button button-fill button-big color-blue">Log Out</a>
+          <p></p>
+          <a href="#" id="layoutChanger" onclick="changeLayout()" class="button button-fill button-big color-blue">Change Theme</a>
+          <script>
+          function changeLayout() {
+             var layout = document.getElementById("layout")
+             if (layout.className === "layout-white"){
+               layout.className = "layout-dark";
+             }
+             else if (layout.className === "layout-dark") {
+               layout.className = "layout-white";
+
+             }
+          }
+          </script>
+          </div>
 				</div>
 			</div>
 		</div>
