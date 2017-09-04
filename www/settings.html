@@ -46,7 +46,7 @@
     <title>Planix</title>
 </head>
 
-<body id="layout" class="layout-white">
+<body id="theme" class="layout-white">
 
 <div class="views">
 	<div class="view view-main">
@@ -68,18 +68,18 @@
 					<p>Here you can adjust the functionality of the App</p>
 					<a href="index.html" id="btnLogout" class="button button-fill button-big color-blue">Log Out</a>
           <p></p>
-          <a href="#" id="layoutChanger" onclick="changeLayout()" class="button button-fill button-big color-blue">Change Theme</a>
+          <a href="#" id="layoutChanger" onClick="changeLayout()" class="button button-fill button-big color-blue">Change Theme</a>
           <script>
           function changeLayout() {
-             var layout = document.getElementById("layout")
-             if (layout.className === "layout-white"){
-               layout.className = "layout-dark";
+             var theme = document.getElementById("theme")
+             var currentClass == theme.className;
+             if (currentClass == "layout-white"){
+               theme.className = "layout-dark";
              }
-             else if (layout.className === "layout-dark") {
-               layout.className = "layout-white";
-
+             else {
+               theme.className = "layout-white";
              }
-          }
+          };
           </script>
           </div>
 				</div>

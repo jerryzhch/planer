@@ -30,39 +30,26 @@ var mainView = myApp.addView('.view-main', {
     domCache: true
 });
 
-// Callbacks to run specific code for specific pages, for example for About page:
-myApp.onPageInit('', function (page) {
-    // run createContentPage func after link was clicked
-    $$('.create-page').on('click', function () {
-        createContentPage();
-    });
-});
+// HTML Content of the new Semester Grades Page
+var newSemester = '<div class="page cached" data-page="semtest" id="demopage">'+
+                  '<div class="accordion-list">'+
+                    '<div class="content-block-title">Subjects</div>'+
+                      '<div class="list-block inset accordion-list">'+
+                        '<ul>'+
 
-// Generate dynamic page
-var dynamicPageIndex = 0;
-function createContentPage() {
-	mainView.router.loadContent(
-        '<!-- Top Navbar-->' +
-        '<div class="navbar">' +
-        '  <div class="navbar-inner">' +
-        '    <div class="left"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
-        '    <div class="center sliding">Dynamic Page ' + (++dynamicPageIndex) + '</div>' +
-        '  </div>' +
-        '</div>' +
-        '<div class="pages">' +
-        '  <!-- Page, data-page contains page name-->' +
-        '  <div data-page="dynamic-pages" class="page">' +
-        '    <!-- Scrollable page content-->' +
-        '    <div class="page-content">' +
-        '      <div class="content-block">' +
-        '        <div class="content-block-inner">' +
-        '          <p>Here is a dynamic page created on ' + new Date() + ' !</p>' +
-        '          <p>Go <a href="#" class="back">back</a> or go to <a href="services.html">Services</a>.</p>' +
-        '        </div>' +
-        '      </div>' +
-        '    </div>' +
-        '  </div>' +
-        '</div>'
-    );
-	return;
-}
+                        '</ul>'+
+                      '</div>'+
+                    '</div>'+
+
+                    '<div class="toolbar tabbar tabbar-labels">'+
+                      '<div class="toolbar-inner">'+
+                        '<a href="#" class="tab-link back">'+
+                          '<i class="f7-icons">rewind</i>'+
+                          '<span class="tabbar-label">Back</span>'+
+                        '</a>'+
+                      '</div>'+
+                    '</div>'+
+                  '</div>';
+
+//Load new content as new page
+mainView.router.loadContent(newSemester);
