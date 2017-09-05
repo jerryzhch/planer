@@ -29,27 +29,29 @@ var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     domCache: true
 });
+function unknown() {
+  // HTML Content of the new Semester Grades Page
+  var newSemester = '<div class="page cached" data-page="semtest" id="demopage">'+
+                    '<div class="accordion-list">'+
+                      '<div class="content-block-title">Subjects</div>'+
+                        '<div class="list-block inset accordion-list">'+
+                          '<ul>'+
 
-// HTML Content of the new Semester Grades Page
-var newSemester = '<div class="page cached" data-page="semtest" id="demopage">'+
-                  '<div class="accordion-list">'+
-                    '<div class="content-block-title">Subjects</div>'+
-                      '<div class="list-block inset accordion-list">'+
-                        '<ul>'+
-
-                        '</ul>'+
+                          '</ul>'+
+                        '</div>'+
                       '</div>'+
-                    '</div>'+
 
-                    '<div class="toolbar tabbar tabbar-labels">'+
-                      '<div class="toolbar-inner">'+
-                        '<a href="#" class="tab-link back">'+
-                          '<i class="f7-icons">rewind</i>'+
-                          '<span class="tabbar-label">Back</span>'+
-                        '</a>'+
+                      '<div class="toolbar tabbar tabbar-labels">'+
+                        '<div class="toolbar-inner">'+
+                          '<a href="#" class="tab-link back">'+
+                            '<i class="f7-icons">rewind</i>'+
+                            '<span class="tabbar-label">Back</span>'+
+                          '</a>'+
+                        '</div>'+
                       '</div>'+
-                    '</div>'+
-                  '</div>';
+                    '</div>';
 
-//Load new content as new page
-mainView.router.loadContent(newSemester);
+  //Load new content as new page
+  mainView.router.loadContent(newSemester);
+
+};
