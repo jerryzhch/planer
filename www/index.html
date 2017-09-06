@@ -14,13 +14,11 @@
     <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
     <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="css/my-app.css">
-	<link rel="stylesheet" href="css/framework7-icons.css">
+	  <link rel="stylesheet" href="css/framework7-icons.css">
     <title>Planix</title>
 </head>
 
-
-
-<body id="theme" class="layout-white">
+<body>
 
 <div class="views">
 	<div class="view view-main">
@@ -30,14 +28,17 @@
         <!-- HEADER -->
         <div class="navbar">
 					<div class="navbar-inner">
-            <div data-popup=".popup-login"class="left open-popup">
-              <i class="f7-icons">login</i>
+            <div class="left">
+              <a href="login.html" class="open-login-screen">
+                <i class="f7-icons">login</i>
+              </a>
             </div>
             <div class="center conten-block-title">Planix</div>
             <div class="right">
               <a href="settings.html" class="link">
                 <i class="f7-icons">settings</i>
-              </a></div>
+              </a>
+            </div>
               <div class="subnavbar">
                 <div class="buttons-row">
                   <a href="#news" class="button tab-link active">News</a>
@@ -49,40 +50,58 @@
   				</div>
 
           <!-- Login popup -->
-           <div class="popup popup-login">
-            <div class="page-content">
-              <div class="list-block inset">
-                <div class="login-screen-title">PlaniX - Login</div>
-                <div class="content-block-title">Enter your credentials and click 'Submit'</div>
-                 <ul>
-                  <li class="item-content">
-                   <div class="item-inner">
-                     <div class="item-input">
-                       <input id="txtEmail" type="email" placeholder="E-Mail">
+          <div class="login-screen">
+              <div class="view">
+                <div class="page">
+                  <div class="page-content login-screen-content">
+                    <div class="login-screen-title">PlaniX</div>
+                    <form>
+                      <div class="list-block">
+                        <ul>
+                          <li class="item-content">
+                            <div class="item-inner">
+                              <div class="item-title label">E-Mail</div>
+                              <div class="item-input">
+                                <input type="text" name="username" placeholder="">
+                              </div>
+                            </div>
+                          </li>
+                          <li class="item-content">
+                            <div class="item-inner">
+                              <div class="item-title label">Password</div>
+                              <div class="item-input">
+                                <input type="password" name="password" placeholder="">
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
                       </div>
-                    </div>
-                  </li>
-                  <li class="item-content">
-                    <div class="item-inner">
-                      <div class="item-input">
-                        <input id="txtPassword" type="password" placeholder="Password">
+                      <div class="row">
+                        <div class="col-50">
+                          <a href="#" class="close-login-screen button button-big button-round active color-red">Cancel</a>
+                        </div>
+                        <div class="col-50">
+                          <a href="#" class="close-login-screen button button-big button-round active color-green">Submit</a>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                </ul>
-               </div>
-               <div class="row">
-                <div class="col-50">
-                  <a href="#" class="close-popup button button-big active color-red">Cancel</a>
-                </div>
-                <div class="col-50">
-                  <a href="#" class="close-popup button button-big active color-green">Submit</a>
+                        <div class="list-block-label">
+                          <p>App in Development</p>
+                        </div>
+                    </form>
+                  </div>
                 </div>
               </div>
-              <div class="content-block-title">You will be either Signed In or Signed Up</div>
+            </div>
+           <!-- About popover -->
+           <div class="popover popover-about">
+             <div class="popover-angle"></div>
+             <div class="popover-inner">
+               <div class="content-block">
+                 <p>About Log In</p>
+                 <p></p>
+               </div>
              </div>
            </div>
-
 
       <div class="pages navbar-through">
          Pag has additional "with-subnavbar" class -->
@@ -144,28 +163,6 @@
             </div>
           </div>
         </div>
-
-        <!-- NEWSEM Template -->
-          <template id="newsem-template">
-            <div class="page cached" data-page="semtest" id="demopage">
-              <div class="accordion-list">
-                <div class="content-block-title">Subjects</div>
-                  <div class="list-block inset accordion-list">
-                    <ul>
-                    </ul>
-                  </div>
-              </div>
-
-              <div class="toolbar tabbar tabbar-labels">
-                <div class="toolbar-inner">
-                  <a href="#" class="tab-link back">
-                    <i class="f7-icons">rewind</i>
-                    <span class="tabbar-label">Back</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </template>
 
         <!-- DEMOPAGE GRADES -->
         <div class="page cached" data-page="semtest" id="demopage">
@@ -472,6 +469,9 @@
 
           <script>
             function createSemester (){
+
+
+              // Create Link
               var newItem = document.createElement("LI");
               var newLink = document.createElement("a");
               var userInput = document.getElementById("userInput").value;    // Create a <a> node
@@ -483,13 +483,38 @@
               var semlist = document.getElementById("semesterlist");    // Get the <ul> element to insert a new node
               semlist.insertBefore(newItem, semlist.childNodes[0]);  // Insert <li> before the first child of <ul>
 
-            //  Create Page
-            //mainView.router.loadContent($('#myPage').html());
-            var tmpl = document.getElementById('newsem-template');
-            document.body.appendChild(tmpl.content.cloneNode(true));
+              //  Create Page
+              var tmpl = document.getElementById("newsem-template");
+              var templ = document.getElementById("templ");
+              templ.setAttribute("data-page", userInput);
+              document.body.appendChild(tmpl.content.cloneNode(true));
+
+
           };
 
           </script>
+          
+                  <!-- NEWSEM Template -->
+                    <template id="newsem-template">
+                      <div class="page cached" data-page="x" id="templ">
+                        <div class="accordion-list">
+                          <div class="content-block-title">Subjects</div>
+                            <div class="list-block inset accordion-list">
+                              <ul>
+                              </ul>
+                            </div>
+                        </div>
+
+                        <div class="toolbar tabbar tabbar-labels">
+                          <div class="toolbar-inner">
+                            <a href="#" class="tab-link back">
+                              <i class="f7-icons">rewind</i>
+                              <span class="tabbar-label">Back</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </template>
 
 				</div>
 			</div>

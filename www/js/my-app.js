@@ -1,7 +1,7 @@
 // Initialize your app
 var myApp = new Framework7({
   // Default title for modals
-  modalTitle: 'Planer',
+  modalTitle: 'PlaniX',
 
   // If it is webapp, we can enable hash navigation:
   pushState: true,
@@ -28,6 +28,14 @@ var $$ = Dom7;
 var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     domCache: true
+});
+
+
+$$('.notification-default').on('click', function () {
+    myApp.addNotification({
+        title: 'PlaniX',
+        message: 'This is a simple notification message with title and message'
+    });
 });
 function unknown() {
   // HTML Content of the new Semester Grades Page
