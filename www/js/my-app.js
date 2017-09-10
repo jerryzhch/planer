@@ -1,5 +1,5 @@
 // Initialize your app
-var myApp = new Framework7({
+var planer = new Framework7({
   // Default title for modals
   modalTitle: 'PlaniX',
 
@@ -8,10 +8,10 @@ var myApp = new Framework7({
 
   // Hide and show indicator during ajax requests
 onAjaxStart: function (xhr) {
-    myApp.showIndicator();
+    planer.showIndicator();
 },
 onAjaxComplete: function (xhr) {
-    myApp.hideIndicator();
+    planer.hideIndicator();
 },
 
 swipeBackPage: true,
@@ -25,14 +25,14 @@ swipeBackPageAnimateOpacity: false
 var $$ = Dom7;
 
 // Add view
-var mainView = myApp.addView('.view-main', {
+var mainView = planer.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     domCache: true
 });
 
 
 $$('.notification-default').on('click', function () {
-    myApp.addNotification({
+    planer.addNotification({
         title: 'PlaniX',
         message: 'This is a simple notification message with title and message'
     });
@@ -63,3 +63,9 @@ function unknown() {
   mainView.router.loadContent(newSemester);
 
 };
+
+$$('.prompt-ok').on('click', function () {
+    planer.prompt('New Subject', 'PlaniX', function (value) {
+        planer.alert('New Subject:' + value + '');
+    });
+});
