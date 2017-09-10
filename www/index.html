@@ -293,49 +293,34 @@
               semlist.insertBefore(newItem, semlist.childNodes[0]);  // Insert <li> before the first child of <ul>
 
               //  Create Page
-              var tmpl = document.getElementById("newsem-template");
-              var templ = document.getElementById("templ");
-              document.body.appendChild(tmpl.content.cloneNode(true));
-
+              var tmpl = document.getElementById("template");
+              mainView.router.loadContent($$('#template').html());
+              /*var tmpl = document.getElementById("newsem-template");
+              var templ = document.getElementById("demopage");
+              templ.setAttribute("data-page", "fisch");*/
+              //document.body.appendChild(tmpl.content.cloneNode(true));
 
           };
-
           </script>
 
-                  <!-- NEWSEM Template -->
-                    <template id="newsem-template">
-                      <div class="page cached" data-page="semtest2" id="demopage">
-                        <div class="accordion-list">
-                        <div class="content-block-title">Subjects</div>
-                          <div class="list-block inset accordion-list">
-                            <ul>
-
-                            <li class="accordion-item" id="D"><a href="#" class="item-content item-link">
-                              <div class="item-inner">
-                                <div class="item-title">Deutsch</div>
-                              </div></a>
-                              <div class="accordion-item-content">
-                              <div class="content-block">
-                                <div class="data-table card ">
-                                  <table>
-                                    <thead>
-                                      <tr>
-                                        <th class="label-cell">Exams</th>
-                                        <th class="numeric-cell">Grade</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                        <td class="label-cell">Kurztest</td>
-                                        <td class="numeric-cell">4.7</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                              </div>
-                            </li>
-                    </template>
+          <!-- NEWSEM Template -->
+          <script type="text/template" id="template">
+            <div class="page cached" id="d">
+              <div class="accordion-list">
+                <div class="content-block-title">Subjects</div>
+                <div class="list-block inset accordion-list">
+                  <ul>
+                    <li class="accordion-item" id="D">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">Deutsch</div>
+                        </div>
+                      </a>
+                    </li>
+                  </div>
+                </div>
+              </div>
+            </script>
 
 				</div>
 			</div>
