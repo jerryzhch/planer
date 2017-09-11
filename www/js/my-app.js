@@ -1,69 +1,71 @@
 // Initialize your app
-var myApp = new Framework7({
+var planer = new Framework7({
   // Default title for modals
-  modalTitle: 'Planer',
+  modalTitle: 'PlaniX',
 
   // If it is webapp, we can enable hash navigation:
   pushState: true,
 
   // Hide and show indicator during ajax requests
 onAjaxStart: function (xhr) {
-    myApp.showIndicator();
+    planer.showIndicator();
 },
 onAjaxComplete: function (xhr) {
-    myApp.hideIndicator();
-}
+    planer.hideIndicator();
+},
+
+swipeBackPage: true,
+swipeBackPageThreshold: 0,
+swipeBackPageActiveArea: 30,
+swipeBackPageAnimateShadow: false,
+swipeBackPageAnimateOpacity: false
 });
 
 // Export selectors engine
 var $$ = Dom7;
 
 // Add view
-var mainView = myApp.addView('.view-main', {
+var mainView = planer.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     domCache: true
 });
 
-// Callbacks to run specific code for specific pages, for example for About page:
-myApp.onPageInit('', function (page) {
-    // run createContentPage func after link was clicked
-    $$('.create-page').on('click', function () {
-        createContentPage();
+
+$$('.notification-default').on('click', function () {
+    planer.addNotification({
+        title: 'PlaniX',
+        message: 'This is a simple notification message with title and message'
     });
 });
+function unknown() {
+  // HTML Content of the new Semester Grades Page
+  var newSemester = '<div class="page cached" data-page="semtest" id="demopage">'+
+                    '<div class="accordion-list">'+
+                      '<div class="content-block-title">Subjects</div>'+
+                        '<div class="list-block inset accordion-list">'+
+                          '<ul>'+
 
-// Generate dynamic page
-var dynamicPageIndex = 0;
-function createContentPage() {
-	mainView.router.loadContent(
-        '<!-- Top Navbar-->' +
-        '<div class="navbar">' +
-        '  <div class="navbar-inner">' +
-        '    <div class="left"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
-        '    <div class="center sliding">Dynamic Page ' + (++dynamicPageIndex) + '</div>' +
-        '  </div>' +
-        '</div>' +
-        '<div class="pages">' +
-        '  <!-- Page, data-page contains page name-->' +
-        '  <div data-page="dynamic-pages" class="page">' +
-        '    <!-- Scrollable page content-->' +
-        '    <div class="page-content">' +
-        '      <div class="content-block">' +
-        '        <div class="content-block-inner">' +
-        '          <p>Here is a dynamic page created on ' + new Date() + ' !</p>' +
-        '          <p>Go <a href="#" class="back">back</a> or go to <a href="services.html">Services</a>.</p>' +
-        '        </div>' +
-        '      </div>' +
-        '    </div>' +
-        '  </div>' +
-        '</div>'
-    );
-	return;
-}
-function createLink(){
-  var a = document.createElement('a');
-  var linkText =  document.createTextNode("userInput");
-  a.appendChild(linkText);
-  a.href = "#";
-  document.getElementById("linkText").appendChild(a);
-}
+                          '</ul>'+
+                        '</div>'+
+                      '</div>'+
+
+                      '<div class="toolbar tabbar tabbar-labels">'+
+                        '<div class="toolbar-inner">'+
+                          '<a href="#" class="tab-link back">'+
+                            '<i class="f7-icons">rewind</i>'+
+                            '<span class="tabbar-label">Back</span>'+
+                          '</a>'+
+                        '</div>'+
+                      '</div>'+
+                    '</div>';
+
+  //Load new content as new page
+  mainView.router.loadContent(newSemester);
+
+};
+
+$$('.prompt-ok').on('click', function () {
+    planer.prompt('New Subject', 'PlaniX', function (value) {
+        planer.alert('New Subject:' + value + '');
+    });
+});
