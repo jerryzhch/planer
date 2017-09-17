@@ -245,6 +245,11 @@
         </div>
       </div>
 
+      <!-- ADD SUBJECTS POPUP -->
+      <div class="popup popup-addsem">
+        <div class="page-content">
+          <div class="list-block inset">
+
         <!-- ADD SEMESTER POPUP -->
 				<div class="popup popup-addsem">
           <div class="page-content">
@@ -292,20 +297,19 @@
               var semlist = document.getElementById("semesterlist");    // Get the <ul> element to insert a new node
               semlist.insertBefore(newItem, semlist.childNodes[0]);  // Insert <li> before the first child of <ul>
 
+
               //  Create Page
-              var tmpl = document.getElementById("template");
-              mainView.router.loadContent($$('#template').html());
-              /*var tmpl = document.getElementById("newsem-template");
-              var templ = document.getElementById("demopage");
-              templ.setAttribute("data-page", "fisch");*/
-              //document.body.appendChild(tmpl.content.cloneNode(true));
+              var tmpl = document.getElementById("newsem-template");
+              var templ = document.getElementById("templ");
+            //  templ.setAttribute("data-page", userInput);
+              document.body.appendChild(tmpl.content.cloneNode(true));
 
           };
           </script>
 
           <!-- NEWSEM Template -->
-          <script type="text/template" id="template">
-            <div class="page cached" id="d">
+          <template id="newsem-template">
+            <div class="page cached" id="templ" data-page="zz">
               <div class="accordion-list">
                 <div class="content-block-title">Subjects</div>
                 <div class="list-block inset accordion-list">
@@ -320,7 +324,7 @@
                   </div>
                 </div>
               </div>
-            </script>
+            </template>
 
 				</div>
 			</div>
