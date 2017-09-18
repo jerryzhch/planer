@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/my-app.css">
 	  <link rel="stylesheet" href="css/framework7-icons.css">
     <title>Planix</title>
+    <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 </head>
 
 <body>
@@ -107,7 +108,6 @@
          Pag has additional "with-subnavbar" class -->
          <div data-page="home" class="page with-subnavbar">
             <div class="page-content hide-bars-on-scroll">
-
               <div class="tabs">
 
                 <!-- NEWS Tab -->
@@ -139,11 +139,13 @@
                     <div class="content-block-title">Semesters</div>
                       <div class="list-block inset">
                         <form>
-                        <ul id="semesterlist">
-                          <li>
-                            <a href="#semtest" id="demoSem" class="item-link list-button">HS 2017</a>
-                          </li>
-                        </ul>
+                          <div id="object">
+                            <ul id="semesterlist">
+                              <li>
+                                <a href="#semtest" id="demoSem" class="item-link list-button">HS 2017</a>
+                              </li>
+                            </ul>
+                        </div>
                       </form>
                       </div>
                         <a id="addsembtn" href="#" data-popup=".popup-addsem" class="open-popup button button-big button-round active">Add Semester</a>
