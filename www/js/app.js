@@ -48,11 +48,6 @@
 
 
 
-
-
-
-
-
    // *** LOGIN ***
 	// Get elememts
 	const txtEmail = document.getElementById('txtEmail');
@@ -61,7 +56,7 @@
 	const btnSignUp= document.getElementById('btnSignUp');
 	const btnLogout = document.getElementById('btnLogout');
 
-	/* Add login event
+	// Add login event
 	btnLogin.addEventListener('click', e => {
 		//Get Email and pass
 		const email = txtEmail.value;
