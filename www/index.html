@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/my-app.css">
 	  <link rel="stylesheet" href="css/framework7-icons.css">
     <title>Planix</title>
+    <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 </head>
 
 <body>
@@ -62,7 +63,7 @@
                             <div class="item-inner">
                               <div class="item-title label">E-Mail</div>
                               <div class="item-input">
-                                <input type="text" name="username" placeholder="">
+                                <input id="txtEmail" type="email" name="email" placeholder="">
                               </div>
                             </div>
                           </li>
@@ -70,18 +71,21 @@
                             <div class="item-inner">
                               <div class="item-title label">Password</div>
                               <div class="item-input">
-                                <input type="password" name="password" placeholder="">
+                                <input id="txtPassword" type="password" name="password" placeholder="">
                               </div>
                             </div>
                           </li>
                         </ul>
                       </div>
                       <div class="row">
-                        <div class="col-50">
+                        <div class="col-33">
                           <a href="#" class="close-login-screen button button-big button-round active color-red">Cancel</a>
                         </div>
-                        <div class="col-50">
-                          <a href="#" class="close-login-screen button button-big button-round active color-green">Submit</a>
+                        <div class="col-33">
+                          <a id="btnLogin" href="#" class="close-login-screen button button-big button-round active color-green">Log In</a>
+                        </div>
+                        <div class="col-33">
+                          <a id="btnSignUp" href="#" class="close-login-screen button button-big button-round active color-green">Sign Up</a>
                         </div>
                       </div>
                         <div class="list-block-label">
@@ -107,7 +111,6 @@
          Pag has additional "with-subnavbar" class -->
          <div data-page="home" class="page with-subnavbar">
             <div class="page-content hide-bars-on-scroll">
-
               <div class="tabs">
 
                 <!-- NEWS Tab -->
@@ -139,11 +142,13 @@
                     <div class="content-block-title">Semesters</div>
                       <div class="list-block inset">
                         <form>
-                        <ul id="semesterlist">
-                          <li>
-                            <a href="#semtest" id="demoSem" class="item-link list-button">HS 2017</a>
-                          </li>
-                        </ul>
+                            <ul id="semesterlist">
+                              <li>
+                                <a href="#semtest" id="demoSem" class="item-link list-button">HS 2017</a>
+                              </li>
+                            </ul>
+                          <div id="object">
+                        </div>
                       </form>
                       </div>
                         <a id="addsembtn" href="#" data-popup=".popup-addsem" class="open-popup button button-big button-round active">Add Semester</a>
@@ -245,6 +250,11 @@
         </div>
       </div>
 
+      <!-- ADD SUBJECTS POPUP -->
+      <div class="popup popup-addsem">
+        <div class="page-content">
+          <div class="list-block inset">
+
         <!-- ADD SEMESTER POPUP -->
 				<div class="popup popup-addsem">
           <div class="page-content">
@@ -292,20 +302,19 @@
               var semlist = document.getElementById("semesterlist");    // Get the <ul> element to insert a new node
               semlist.insertBefore(newItem, semlist.childNodes[0]);  // Insert <li> before the first child of <ul>
 
+
               //  Create Page
-              var tmpl = document.getElementById("template");
-              mainView.router.loadContent($$('#template').html());
-              /*var tmpl = document.getElementById("newsem-template");
-              var templ = document.getElementById("demopage");
-              templ.setAttribute("data-page", "fisch");*/
-              //document.body.appendChild(tmpl.content.cloneNode(true));
+              var tmpl = document.getElementById("newsem-template");
+              var templ = document.getElementById("templ");
+            //  templ.setAttribute("data-page", userInput);
+              document.body.appendChild(tmpl.content.cloneNode(true));
 
           };
           </script>
 
           <!-- NEWSEM Template -->
-          <script type="text/template" id="template">
-            <div class="page cached" id="d">
+          <template id="newsem-template">
+            <div class="page cached" id="templ" data-page="zz">
               <div class="accordion-list">
                 <div class="content-block-title">Subjects</div>
                 <div class="list-block inset accordion-list">
@@ -320,7 +329,7 @@
                   </div>
                 </div>
               </div>
-            </script>
+            </template>
 
 				</div>
 			</div>
@@ -333,6 +342,7 @@
     <script type="text/javascript" src="js/framework7.min.js"></script>
     <!-- Path to your app js-->
     <script type="text/javascript" src="js/my-app.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
