@@ -68,7 +68,7 @@
 	});
 
 	// Add signup event
-	btnLogin.addEventListener('click', e => {
+	btnSignUp.addEventListener('click', e => {
 		//Get Email and pass
 		// TODO: CHECK 4 REAL EMAIL
 		const email = txtEmail.value;
@@ -88,5 +88,5 @@
 		}else{
 			console.log('not logged in');
 		}
-	});*/
+	});
  }());

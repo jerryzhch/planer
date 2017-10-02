@@ -71,18 +71,21 @@
                             <div class="item-inner">
                               <div class="item-title label">Password</div>
                               <div class="item-input">
-                                <input type="password" name="password" placeholder="">
+                                <input id="txtPassword" type="password" name="password" placeholder="">
                               </div>
                             </div>
                           </li>
                         </ul>
                       </div>
                       <div class="row">
-                        <div class="col-50">
+                        <div class="col-33">
                           <a href="#" class="close-login-screen button button-big button-round active color-red">Cancel</a>
                         </div>
-                        <div class="col-50">
-                          <a href="#" id="btnLogin" class="close-login-screen button button-big button-round active color-green">Submit</a>
+                        <div class="col-33">
+                          <a id="btnLogin" href="#" class="close-login-screen button button-big button-round active color-green">Log In</a>
+                        </div>
+                        <div class="col-33">
+                          <a id="btnSignUp" href="#" class="close-login-screen button button-big button-round active color-green">Sign Up</a>
                         </div>
                       </div>
                         <div class="list-block-label">
@@ -139,12 +142,12 @@
                     <div class="content-block-title">Semesters</div>
                       <div class="list-block inset">
                         <form>
-                          <div id="object">
                             <ul id="semesterlist">
                               <li>
                                 <a href="#semtest" id="demoSem" class="item-link list-button">HS 2017</a>
                               </li>
                             </ul>
+                          <div id="object">
                         </div>
                       </form>
                       </div>
@@ -222,7 +225,7 @@
         <a href="#" class="floating-button floating-button-to-popover open-popover color-purple" data-popup=".popup-menu">
             <i class="f7-icons">add</i>
         </a>
-        <p><a href="#" class="prompt-ok">Prompt with text and Ok callback</a></p>
+<p><a href="#" class="prompt-ok">Prompt with text and Ok callback</a></p>
         <div class="popover demo-menu">
           <div class="popover-inner">
             <div class="list-block">
@@ -339,6 +342,7 @@
     <script type="text/javascript" src="js/framework7.min.js"></script>
     <!-- Path to your app js-->
     <script type="text/javascript" src="js/my-app.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
