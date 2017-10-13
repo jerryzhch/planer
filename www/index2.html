@@ -49,7 +49,66 @@
               </div>
   					</div>
   				</div>
+          <div class="pages navbar-through">
+             Pag has additional "with-subnavbar" class -->
+             <div data-page="home" class="page with-subnavbar">
+                <div class="page-content hide-bars-on-scroll">
+                  <div class="tabs">
 
+                    <!-- NEWS Tab -->
+                    <div id="news" class="tab active">
+                      <div class="content-block">
+                        <div class="content-block-title">Recent News</div>
+
+            						<div class="content-block inset">
+            							<div class="content-block-inner">
+            							<p id="newstitle">European Girls‘ Mathematics Olympiade</p>
+            							<p>Am vergangenen Wochenende rechneten 168 Mittelschülerinnen aus 43 Nationen an der European Girls‘ Mathematical Olympiad um Medaillenplätze. An der Organisatorin dieses Anlasses beteiligt war unter anderen Viviane Kehl, Mathematik-Studentin an der ETH Zürich und ehemalige MNG Schülerin.
+            								Zwei aktuelle MNG Schülerinnen wurden an der Schlusszeremonie an der Universität Zürich ausgezeichnet: Ivana Klasovita darf sich über eine Bronzemedaille freuen, ihre Zwillingsschwester gewann eine Honorable Mention. Wir als Schule sind stolz über diese tollen Leistungen und gratulieren herzlich!
+            								</p>
+            							</div>
+            						</div>
+            						<div class="content-block inset">
+            							<div class="content-block-inner">
+            								<p id="newstitle">Premiere des AG Theater Projekts 2017 am 1. April</p>
+            								<p>Vom 1. bis zum 12. April finden in der Aula die Aufführungen der diesjährigen AG Theater-Produktion SCHWÄRMEN statt; ein Stück, das die Jungautorin Cromme eigens für die AG Theater geschrieben hat. Die unterhaltsame Szenenabfolge mit Text, Musik, Gesang, Bewegung und Tanz handelt von einer Klassenfahrt nach Italien, die es in sich hat...								</p>
+            								<a href="docs/theat17.pdf">Flyer</a>
+            							</div>
+            						</div>
+                      </div>
+                    </div>
+
+                    <!-- GRADES Tab -->
+                    <div id="grades" class="tab">
+                      <div class="content-block">
+                        <div class="content-block-title">Semesters</div>
+                          <div class="list-block inset">
+                            <form id="semesters">
+                              <ul id="semesterlist">
+                                <li>
+                                  <a href="#semtest" id="demoSem" class="item-link list-button">HS 2017</a>
+                                </li>
+                              </ul>
+                            </form>
+                          </div>
+                            <a id="addsembtn" href="#" data-popup=".popup-addsem" class="open-popup button button-big button-round active">Add Semester</a>
+
+                      </div>
+                      </div>
+
+                      <!-- TIMETABLE Tab -->
+                    <div id="tt" class="tab">
+                      <div class="content-block">
+                        <p>Here you can view and add your appointments </p>
+                        <a href="https://intranet.tam.ch/krm/calendar" class="link">Tam-Intranet</a>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
           <div id="object"></div>
           <ul id="list">
 
@@ -64,7 +123,7 @@
               <script type="text/javascript" src="js/framework7.min.js"></script>
               <!-- Path to your app js-->
               <script type="text/javascript" src="js/my-app.js"></script>
-              <script type="text/javascript" src="js/app.js"></script>
+              <script type="text/javascript" src="js/db2.js"></script>
               <script type="text/javascript" src="js/index.js"></script>
               <script type="text/javascript">
                   app.initialize();
