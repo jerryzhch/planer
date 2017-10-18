@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>PlaniX</title>
-    <script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyD5MjBa0qzkpwzN0ThYAuvk8_pqXDG8Ibc",
-        authDomain: "matur18-90b73.firebaseapp.com",
-        databaseURL: "https://matur18-90b73.firebaseio.com",
-        projectId: "matur18-90b73",
-        storageBucket: "matur18-90b73.appspot.com",
-        messagingSenderId: "268822264260"
-      };
-      firebase.initializeApp(config);
-    </script>
+	<head>
+		<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+		<script>
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyD5MjBa0qzkpwzN0ThYAuvk8_pqXDG8Ibc",
+		    authDomain: "matur18-90b73.firebaseapp.com",
+		    databaseURL: "https://matur18-90b73.firebaseio.com",
+		    projectId: "matur18-90b73",
+		    storageBucket: "matur18-90b73.appspot.com",
+		    messagingSenderId: "268822264260"
+		  };
+		  firebase.initializeApp(config);
+		</script>
 
-    <script src="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.js"></script>
+		<script src="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.css" />
     <script type="text/javascript">
       // FirebaseUI config.
       var uiConfig = {
-        signInSuccessUrl: 'index2.html',
+        signInSuccessUrl: '<index2.html>',
         signInOptions: [
           // Leave the lines as is for the providers you want to offer your users.
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -32,16 +30,43 @@
         tosUrl: '<your-tos-url>'
       };
 
-      // Initialize the FirebaseUI Widget using Firebase.
-      var ui = new firebaseui.auth.AuthUI(firebase.auth());
-      // The start method will wait until the DOM is loaded.
-      ui.start('#firebaseui-auth-container', uiConfig);
     </script>
-  </head>
-  <body>
-    <!-- The surrounding HTML is left untouched by FirebaseUI.
-         Your app may use that space for branding, controls and other customizations.-->
-    <h1>Welcome to PlaniX</h1>
-    <div id="firebaseui-auth-container"></div>
-  </body>
+
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+		<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+		<link rel="stylesheet" href="css/framework7.ios.min.css">
+		<link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+		<link rel="stylesheet" href="css/my-app.css">
+		<link rel="stylesheet" href="css/framework7-icons.css">
+		<title>PlaniX</title>
+	</head>
+
+	<body>
+		<div class="views">
+			<div class="view view-main">
+				<div class="pages navbar-fixed toolbar-fixed">
+					<div class="page" data-page="index">
+						<div class="page-content">
+							<div class="page-content login-screen-content">
+								<form>
+									<div class="login-screen-title">PlaniX - Log In</div>
+										<div class="list-block">
+											<div id="firebaseui-auth-container"></div>
+											<script>
+											// Initialize the FirebaseUI Widget using Firebase.
+											var ui = new firebaseui.auth.AuthUI(firebase.auth());
+											// The start method will wait until the DOM is loaded.
+											ui.start('#firebaseui-auth-container', uiConfig);
+											</script>
+										</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
