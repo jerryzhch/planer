@@ -13,6 +13,7 @@ firebase.initializeApp(config);
 
 
  var database = firebase.database();
+
    // *** LOGIN ***
 	// Get elememts
 	const txtEmail = document.getElementById('txtEmail');
@@ -55,28 +56,16 @@ firebase.initializeApp(config);
 		}
 	});
 
-document.getElementById("newsemadd").addEventListener("click", createSemester);
-
-  function createSemester (){
-    // Create Link
-    var newItem = document.createElement("li");
-    var newLink = document.createElement("a");
-    var userInput = document.getElementById("userInput").value;    // Create a <a> node
-    var textnode = document.createTextNode(userInput);
-    newLink.href = "#" + userInput;
-    newLink.setAttribute("class", "item-link list-button" )                              // Create a text node with userInput
-    newLink.appendChild(textnode);                                // Append the text to <a>
-    newItem.appendChild(newLink);                                 // Append the Link to <li>
-    var semlist = document.getElementById("semesters");    // Get the <ul> element to insert a new node
-    semlist.insertBefore(newItem, semlist.childNodes[0]);  // Insert <li> before the first child of <ul>
-
-    setTimeout(function() {
-      var data = {
-        username: txtEmail.value,
-      }
-      console.log(data);
-       var ref = database.ref("users");
-      ref.push(data);
-    },1000);
+document.getElementById("newsemadd").addEventListener("click", savedata);
+function savedata () {
+  var data = {
+    username: txtEmail.value,
+    semlistItem: userInput
   }
+  /*ref.push(data);
+  var ref = database.ref("users");
+  console.log(data);*/
+
+}
+
 });

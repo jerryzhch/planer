@@ -15,8 +15,8 @@
     <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="css/my-app.css">
 	  <link rel="stylesheet" href="css/framework7-icons.css">
-    <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
     <title>Planix</title>
+    <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 </head>
 
 <body>
@@ -49,85 +49,296 @@
               </div>
   					</div>
   				</div>
-          <div class="pages navbar-through">
-             Pag has additional "with-subnavbar" class -->
-             <div data-page="home" class="page with-subnavbar">
-                <div class="page-content hide-bars-on-scroll">
-                  <div class="tabs">
 
-                    <!-- NEWS Tab -->
-                    <div id="news" class="tab active">
-                      <div class="content-block">
-                        <div class="content-block-title">Recent News</div>
-
-            						<div class="content-block inset">
-            							<div class="content-block-inner">
-            							<p id="newstitle">European Girls‘ Mathematics Olympiade</p>
-            							<p>Am vergangenen Wochenende rechneten 168 Mittelschülerinnen aus 43 Nationen an der European Girls‘ Mathematical Olympiad um Medaillenplätze. An der Organisatorin dieses Anlasses beteiligt war unter anderen Viviane Kehl, Mathematik-Studentin an der ETH Zürich und ehemalige MNG Schülerin.
-            								Zwei aktuelle MNG Schülerinnen wurden an der Schlusszeremonie an der Universität Zürich ausgezeichnet: Ivana Klasovita darf sich über eine Bronzemedaille freuen, ihre Zwillingsschwester gewann eine Honorable Mention. Wir als Schule sind stolz über diese tollen Leistungen und gratulieren herzlich!
-            								</p>
-            							</div>
-            						</div>
-            						<div class="content-block inset">
-            							<div class="content-block-inner">
-            								<p id="newstitle">Premiere des AG Theater Projekts 2017 am 1. April</p>
-            								<p>Vom 1. bis zum 12. April finden in der Aula die Aufführungen der diesjährigen AG Theater-Produktion SCHWÄRMEN statt; ein Stück, das die Jungautorin Cromme eigens für die AG Theater geschrieben hat. Die unterhaltsame Szenenabfolge mit Text, Musik, Gesang, Bewegung und Tanz handelt von einer Klassenfahrt nach Italien, die es in sich hat...								</p>
-            								<a href="docs/theat17.pdf">Flyer</a>
-            							</div>
-            						</div>
+          <!-- Login popup -->
+          <div class="login-screen">
+              <div class="view">
+                <div class="page">
+                  <div class="page-content login-screen-content">
+                    <div class="login-screen-title">PlaniX  - Log In</div>
+                    <form>
+                      <div class="list-block">
+                        <ul>
+                          <li class="item-content">
+                            <div class="item-inner">
+                              <div class="item-title label">E-Mail</div>
+                              <div class="item-input">
+                                <input id="txtEmail" type="email" name="email" placeholder="">
+                              </div>
+                            </div>
+                          </li>
+                          <li class="item-content">
+                            <div class="item-inner">
+                              <div class="item-title label">Password</div>
+                              <div class="item-input">
+                                <input id="txtPassword" type="password" name="password" placeholder="">
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
                       </div>
-                    </div>
-
-                    <!-- GRADES Tab -->
-                    <div id="grades" class="tab">
-                      <div class="content-block">
-                        <div class="content-block-title">Semesters</div>
-                          <div class="list-block inset">
-                            <form id="semesters">
-                              <ul id="semesterlist">
-                                <li>
-                                  <a href="#semtest" id="demoSem" class="item-link list-button">HS 2017</a>
-                                </li>
-                              </ul>
-                            </form>
-                          </div>
-                            <a id="addsembtn" href="#" data-popup=".popup-addsem" class="open-popup button button-big button-round active">Add Semester</a>
-
+                      <div class="row">
+                        <div class="col-33">
+                          <a href="#" class="close-login-screen button button-big button-round active color-red">Cancel</a>
+                        </div>
+                        <div class="col-33">
+                          <a id="btnLogin" href="#" class="close-login-screen button button-big button-round active color-green">Log In</a>
+                        </div>
+                        <div class="col-33">
+                          <a id="btnSignUp" href="#" class="close-login-screen button button-big button-round active color-green">Sign Up</a>
+                        </div>
                       </div>
-                      </div>
-
-                      <!-- TIMETABLE Tab -->
-                    <div id="tt" class="tab">
-                      <div class="content-block">
-                        <p>Here you can view and add your appointments </p>
-                        <a href="https://intranet.tam.ch/krm/calendar" class="link">Tam-Intranet</a>
-                      </div>
-                    </div>
-
-
+                        <div class="list-block-label">
+                          <p>App in Development</p>
+                        </div>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
-          <div id="object"></div>
-          <ul id="list">
+           <!-- About popover -->
+           <div class="popover popover-about">
+             <div class="popover-angle"></div>
+             <div class="popover-inner">
+               <div class="content-block">
+                 <p>About Log In</p>
+                 <p></p>
+               </div>
+             </div>
+           </div>
 
-          </ul>
+      <div class="pages navbar-through">
+         Pag has additional "with-subnavbar" class -->
+         <div data-page="home" class="page with-subnavbar">
+            <div class="page-content hide-bars-on-scroll">
+              <div class="tabs">
+
+                <!-- NEWS Tab -->
+                <div id="news" class="tab active">
+                  <div class="content-block">
+                    <div class="content-block-title">Recent News</div>
+
+        						<div class="content-block inset">
+        							<div class="content-block-inner">
+        							<p id="newstitle">European Girls‘ Mathematics Olympiade</p>
+        							<p>Am vergangenen Wochenende rechneten 168 Mittelschülerinnen aus 43 Nationen an der European Girls‘ Mathematical Olympiad um Medaillenplätze. An der Organisatorin dieses Anlasses beteiligt war unter anderen Viviane Kehl, Mathematik-Studentin an der ETH Zürich und ehemalige MNG Schülerin.
+        								Zwei aktuelle MNG Schülerinnen wurden an der Schlusszeremonie an der Universität Zürich ausgezeichnet: Ivana Klasovita darf sich über eine Bronzemedaille freuen, ihre Zwillingsschwester gewann eine Honorable Mention. Wir als Schule sind stolz über diese tollen Leistungen und gratulieren herzlich!
+        								</p>
+        							</div>
+        						</div>
+        						<div class="content-block inset">
+        							<div class="content-block-inner">
+        								<p id="newstitle">Premiere des AG Theater Projekts 2017 am 1. April</p>
+        								<p>Vom 1. bis zum 12. April finden in der Aula die Aufführungen der diesjährigen AG Theater-Produktion SCHWÄRMEN statt; ein Stück, das die Jungautorin Cromme eigens für die AG Theater geschrieben hat. Die unterhaltsame Szenenabfolge mit Text, Musik, Gesang, Bewegung und Tanz handelt von einer Klassenfahrt nach Italien, die es in sich hat...								</p>
+        								<a href="docs/theat17.pdf">Flyer</a>
+        							</div>
+        						</div>
+                  </div>
+                </div>
+
+                <!-- GRADES Tab -->
+                <div id="grades" class="tab">
+                  <div class="content-block">
+                    <div class="content-block-title">Semesters</div>
+                      <div class="list-block inset">
+                        <form>
+                          <ul id="semesterlist">
+                            <li>
+                              <a href="#semtest" id="demoSem" class="item-link list-button">HS 2017</a>
+                            </li>
+                          </ul>
+                        </form>
+                      </div>
+                        <a id="addsembtn" href="#" data-popup=".popup-addsem" class="open-popup button button-big button-round active">Add Semester</a>
+
+                  </div>
+                  </div>
+
+                  <!-- TIMETABLE Tab -->
+                <div id="tt" class="tab">
+                  <div class="content-block">
+                    <p>Here you can view and add your appointments </p>
+                    <a href="https://intranet.tam.ch/krm/calendar" class="link">Tam-Intranet</a>
+                  </div>
+                </div>
 
 
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DEMOPAGE GRADES -->
+        <div class="page cached" data-page="semtest" id="demopage">
+          <div class="accordion-list">
+          <div class="content-block-title">Subjects</div>
+            <div class="list-block inset accordion-list">
+              <ul>
+
+              <li class="accordion-item" id="D"><a href="#" class="item-content item-link">
+                <div class="item-inner">
+                  <div class="item-title">Deutsch</div>
+                </div></a>
+                <div class="accordion-item-content">
+                <div class="content-block">
+                  <div class="data-table card ">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="label-cell">Exams</th>
+                          <th class="numeric-cell">Grade</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="label-cell">Kurztest</td>
+                          <td class="numeric-cell">4.7</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                </div>
+              </li>
+              <li class="accordion-item" id="M"><a href="#" class="item-content item-link">
+                <div class="item-inner">
+                  <div class="item-title">Mathematik</div>
+                </div></a>
+                <div class="accordion-item-content">
+                <div class="content-block">
+                  <p>P1</p>
+                </div>
+                </div>
+              </li>
+              </ul>
+            </div>
+          </div>
+          <div class="toolbar tabbar tabbar-labels">
+            <div class="toolbar-inner">
+              <a href="#" class="tab-link back">
+								<i class="f7-icons">rewind</i>
+								<span class="tabbar-label">Back</span>
+							</a>
+          </div>
+        </div>
+        <a href="#" class="floating-button floating-button-to-popover open-popover color-purple" data-popup=".popup-menu">
+            <i class="f7-icons">add</i>
+        </a>
+<p><a href="#" class="prompt-ok">Prompt with text and Ok callback</a></p>
+        <div class="popover demo-menu">
+          <div class="popover-inner">
+            <div class="list-block">
+              <ul>
+                <li>
+                  <a href="#" class="item-content item-link add-subject" id="addSubject">
+                    <div class="item-inner">
+                      <div class="item-title">Add Subjects</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="item-content item-link" id="deleteSubject">
+                    <div class="item-inner">
+                      <div class="item-title">Delete Subjects</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADD SUBJECTS POPUP -->
+      <div class="popup popup-addsem">
+        <div class="page-content">
+          <div class="list-block inset">
+
+        <!-- ADD SEMESTER POPUP -->
+				<div class="popup popup-addsem">
+          <div class="page-content">
+            <div class="list-block inset">
+              <ul>
+
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"></div>
+                      <div class="item-inner">
+                        <div class="item-input">
+                          <input type="text" placeholder="Name the semester here" id="userInput">
+                        </div>
+                      </div>
+                  </div>
+                </li>
+
+              <!-- <div class="content-block-title">Select your preferred subjects</div>
+              <!-- Cancel & Submit -->
+            </ul>
+              <div class="row">
+                <div class="col-50">
+                  <a  href="#" class="close-popup button button-big active color-red">Cancel</a>
+                </div>
+                <div class="col-50">
+                  <a id="newsemadd" onClick="createSemester()" href="#" class="close-popup button button-big active color-green">Submit</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEWSEM Template -->
+          <template id="newsem-template">
+            <div class="page cached" id="templ" data-page="zz">
+              <div class="accordion-list">
+                <div class="content-block-title">Subjects</div>
+                <div class="list-block inset accordion-list">
+                  <ul>
+                    <li class="accordion-item" id="D">
+                      <a href="#" class="item-content item-link">
+                        <div class="item-inner">
+                          <div class="item-title">Deutsch</div>
+                        </div>
+                      </a>
+                    </li>
+                  </div>
+                </div>
+              </div>
+            </template>
+            <script>
+
+              function createSemester (){
+                // Create Link
+                var newItem = document.createElement("li");
+                var newLink = document.createElement("a");
+                var userInput = document.getElementById("userInput").value;    // Create a <a> node
+                var textnode = document.createTextNode(userInput);
+                newLink.href = "#" + userInput;
+                newLink.setAttribute("class", "item-link list-button" )                              // Create a text node with userInput
+                newLink.appendChild(textnode);                                // Append the text to <a>
+                newItem.appendChild(newLink);                                 // Append the Link to <li>
+                var semlist = document.getElementById("semesterlist");    // Get the <ul> element to insert a new node
+                semlist.insertBefore(newItem, semlist.childNodes[0]);  // Insert <li> before the first child of <ul>
 
 
+              }
+            </script>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 
-              <!-- Path to Framework7 Library JS-->
-              <script type="text/javascript" src="js/framework7.min.js"></script>
-              <!-- Path to your app js-->
-              <script type="text/javascript" src="js/my-app.js"></script>
-              <script type="text/javascript" src="js/db2.js"></script>
-              <script type="text/javascript" src="js/index.js"></script>
-              <script type="text/javascript">
-                  app.initialize();
-              </script>
-          </body>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/db.js"></script>
 
-          </html>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</body>
+
+</html>
