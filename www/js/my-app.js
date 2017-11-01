@@ -60,13 +60,13 @@ function unknown() {
                     '</div>';
 
   //Load new content as new page
-  mainView.router.loadContent(newSemester);
+//  mainView.router.loadContent(newSemester);
 
 };
 
 
-$$('.prompt-ok').on('click', function () {
-    planix.prompt('New Subject', 'PlaniX', function (value) {
-        planix.alert('New Subject:' + value + '');
+$$('.prompt-newsem').on('click', function () {
+    planix.prompt('New Semester', 'PlaniX', function (value) {
+        
     });
 });
