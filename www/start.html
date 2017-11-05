@@ -33,7 +33,7 @@
                 <i class="f7-icons">login</i>
               </a>
             </div>
-            <div class="center conten-block-title">PlaniX</div>
+            <div class="center">PlaniX</div>
             <div class="right">
               <a href="settings.html" class="link">
                 <i class="f7-icons">settings</i>
@@ -43,7 +43,7 @@
                 <div class="buttons-row">
                   <a href="#news" class="button tab-link active">News</a>
                   <a href="#grades" class="button tab-link">Grades</a>
-                  <a href="#tt" class="button tab-link">Timetable</a>
+                <!--  <a href="#tt" class="button tab-link">Timetable</a> -->
                 </div>
               </div>
   					</div>
@@ -95,16 +95,9 @@
                 </div>
               </div>
             </div>
-           <!-- About popover -->
-           <div class="popover popover-about">
-             <div class="popover-angle"></div>
-             <div class="popover-inner">
-               <div class="content-block">
-                 <p>About Log In</p>
-                 <p></p>
-               </div>
-             </div>
-           </div>
+            <div id="sign-in-status"></div>
+            <div id="sign-in"></div>
+            <div id="account-details"></div>
 
       <div class="pages navbar-through">
          Pag has additional "with-subnavbar" class -->
@@ -142,30 +135,47 @@
                       <div class="list-block inset">
                         <form>
                           <ul id="semesterlist">
-                            <li>
-                              <a href="#semtest" id="demoSem" class="item-link list-button">HS 2017</a>
-                            </li>
+                            <div id="toRemove">
+                              <li>
+                                <a href="#semtest" id="demoSem" class="item-link list-button">HS 2017</a>
+                              </li>
+                          </div>
                           </ul>
                         </form>
                       </div>
-                        <a id="addsembtn" href="#" data-popup=".popup-addsem" class="open-popup button button-big button-round active">Add Semester</a>
-
+                        <a id="addsembtn" href="#" data-picker=".picker-1" class="prompt-new button button-big button-round active">Add Semester</a>
+                    </div>
                   </div>
+                  <!-- Picker -->
+                    <div class="picker-modal picker-1">
+                      <div class="toolbar">
+                        <div class="toolbar-inner">
+                          <div class="left"><a href="#" class="close-picker">Cancel</a></div>
+                          <div class="right"><a href="#" id="newsemadd" onclick="createSemester()" class="button">Done</a></div>
+                        </div>
+                      </div>
+                      <div class="picker-modal-inner">
+                        <div class="content-block">
+                          <div class="page-content">
+                            <div class="list-block inset">
+                              <ul>
+                                <li>
+                                  <div class="item-content">
+                                    <div class="item-media"></div>
+                                      <div class="item-inner">
+                                        <div class="item-input">
+                                          <input type="text" placeholder="Name the semester here" id="userInput">
+                                        </div>
+                                      </div>
+                                  </div>
+                                </li>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-
-                  <!-- TIMETABLE Tab -->
-                <div id="tt" class="tab">
-                  <div class="content-block">
-                    <p>Here you can view and add your appointments </p>
-                    <a href="https://intranet.tam.ch/krm/calendar" class="link">Tam-Intranet</a>
-                  </div>
-                </div>
-
-
-              </div>
-            </div>
-          </div>
-        </div>
 
         <!-- DEMOPAGE GRADES -->
         <div class="page cached" data-page="semtest" id="demopage">
@@ -223,13 +233,12 @@
         <a href="#" class="floating-button floating-button-to-popover open-popover color-purple" data-popup=".popup-menu">
             <i class="f7-icons">add</i>
         </a>
-<p><a href="#" class="prompt-ok">Prompt with text and Ok callback</a></p>
         <div class="popover demo-menu">
           <div class="popover-inner">
             <div class="list-block">
               <ul>
                 <li>
-                  <a href="#" class="item-content item-link add-subject" id="addSubject">
+                  <a href="#" class="prompt-newsem item-content item-link add-subject" id="addSubject">
                     <div class="item-inner">
                       <div class="item-title">Add Subjects</div>
                     </div>
@@ -278,7 +287,7 @@
                   <a  href="#" class="close-popup button button-big active color-red">Cancel</a>
                 </div>
                 <div class="col-50">
-                  <a id="newsemadd" onClick="createSemester()" href="#" class="close-popup button button-big active color-green">Submit</a>
+                  <a id="newsemadd" href="#" class="close-popup button button-big active color-green">Submit</a>
                 </div>
               </div>
             </div>
@@ -302,24 +311,7 @@
                 </div>
               </div>
             </template>
-            <script>
 
-              function createSemester (){
-                // Create Link
-                var newItem = document.createElement("li");
-                var newLink = document.createElement("a");
-                var userInput = document.getElementById("userInput").value;    // Create a <a> node
-                var textnode = document.createTextNode(userInput);
-                newLink.href = "#" + userInput;
-                newLink.setAttribute("class", "item-link list-button" )                              // Create a text node with userInput
-                newLink.appendChild(textnode);                                // Append the text to <a>
-                newItem.appendChild(newLink);                                 // Append the Link to <li>
-                var semlist = document.getElementById("semesterlist");    // Get the <ul> element to insert a new node
-                semlist.insertBefore(newItem, semlist.childNodes[0]);  // Insert <li> before the first child of <ul>
-
-
-              }
-            </script>
 
 				</div>
 			</div>
@@ -334,7 +326,6 @@
     <script type="text/javascript" src="js/my-app.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/db.js"></script>
-
     <script type="text/javascript">
         app.initialize();
     </script>

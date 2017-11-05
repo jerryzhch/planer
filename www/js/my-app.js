@@ -59,14 +59,5 @@ function unknown() {
                       '</div>'+
                     '</div>';
 
-  //Load new content as new page
-//  mainView.router.loadContent(newSemester);
 
 };
-
-
-$$('.prompt-newsem').on('click', function () {
-    planix.prompt('New Semester', 'PlaniX', function (value) {
-        
-    });
-});

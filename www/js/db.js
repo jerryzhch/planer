@@ -1,4 +1,4 @@
- (function() {
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyD5MjBa0qzkpwzN0ThYAuvk8_pqXDG8Ibc",
@@ -10,28 +10,81 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//var database = firebase.database();
+
+// Get elements
+var semesterlist = document.getElementById("semesterlist");
+
+// Create Preferences
+var refSemester = firebase.database().ref().child('Semester');
+var refGradelist = refSemester.child('Gradeslist');
 
 
- var database = firebase.database();
+$$('.prompt-new').on('click', function () {
+    planix.prompt('New Semester', 'PlaniX', function (userInput) {
 
-               function createSemester (){
-                 // Create Link
-                 var newItem = document.createElement("li");
-                 var newLink = document.createElement("a");
-                 var userInput = document.getElementById("userInput").value;    // Create a <a> node
-                 var textnode = document.createTextNode(userInput);
-                 newLink.href = "#" + userInput;
-                 newLink.setAttribute("class", "item-link list-button" )                              // Create a text node with userInput
-                 newLink.appendChild(textnode);                                // Append the text to <a>
-                 newItem.appendChild(newLink);                                 // Append the Link to <li>
-                 var semlist = document.getElementById("semesterlist");    // Get the <ul> element to insert a new node
-                 semlist.insertBefore(newItem, semlist.childNodes[0]);  // Insert <li> before the first child of <ul>
-
-
-               }
-
-
-//document.getElementById("newsemadd").addEventListener("click", savedata);
-
-
+        // New Firebase Database Entry
+        var data = {
+          semname: userInput
+        }
+        console.log(data);
+        refSemester.push(data);
+    });
 });
+
+// Sync lsit changes
+refGradelist.on('child_added', addChild)
+
+  function addChild(data){
+    var Semester = data.val();
+    var keys = Object.keys(Semester);
+    console.log(keys);
+    for (var i = 0; i < keys.length; i++){
+      var toRemove = document.createElement('div');
+      var newItem = document.createElement("li");
+      var newLink = document.createElement("a")
+      var textnode = document.createTextNode(userInput);
+      newLink.setAttribute("class", "item-link list-button" )
+      newLink.setAttribute("id", userInput)
+      newLink.appendChild(textnode);
+      newItem.appendChild(newLink);
+      toRemove.appendChild(newItem);
+      var semesterlist = document.getElementById("semesterlist");
+      semesterlist.insertBefore(toRemove, semesterlist.childNodes[0]);
+  };
+};
+refSemester.on('value', gotData, errData);
+
+function gotData(data){
+
+  document.getElementById('semesterlist').empty('');
+
+  //console.log(data.val());
+  var Semester = data.val();
+  var keys = Object.keys(Semester);
+  console.log(keys);
+  for (var i = 0; i < keys.length; i++){
+    var k = keys[i];
+    var semname = Semester[k].semname;
+    //console.log(semname);
+    var newItem = document.createElement("li");
+    //newItem.class('gradeelements');
+    var newLink = document.createElement("a");  // Create a <a> node
+    var textnode = document.createTextNode(semname);
+    newLink.href = "#" + semname;
+    newLink.setAttribute("class", "item-link list-button" )
+    newLink.setAttribute("id", semname)
+    newLink.appendChild(textnode);
+    newItem.appendChild(newLink);
+    var semesterlist = document.getElementById("semesterlist");
+    semesterlist.insertBefore(newItem, semesterlist.childNodes[0]);
+
+
+  }
+}
+
+function errData(data){
+  console.log('Error!');
+  console.log(err);
+
+}
