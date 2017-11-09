@@ -18,7 +18,9 @@ swipeBackPage: true,
 swipeBackPageThreshold: 0,
 swipeBackPageActiveArea: 30,
 swipeBackPageAnimateShadow: false,
-swipeBackPageAnimateOpacity: false
+swipeBackPageAnimateOpacity: false,
+
+swipePanel: 'left'
 });
 
 // Export selectors engine

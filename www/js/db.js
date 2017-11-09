@@ -1,4 +1,4 @@
-
+var $$ = Dom7;
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyD5MjBa0qzkpwzN0ThYAuvk8_pqXDG8Ibc",
@@ -69,10 +69,10 @@ function gotData(data){
     var newItem = document.createElement("li");
     //newItem.class('gradeelements');
     var newLink = document.createElement("a");  // Create a <a> node
-    var textnode = document.createTextNode(semname);
+    var textnode = document.createTextNode(semname);v
     newLink.href = "#" + semname;
     newLink.setAttribute("class", "item-link list-button group" )
-    newLink.setAttribute("id", semname)
+    newLink.setAttribute("id", "sem+"+semname)
     newLink.appendChild(textnode);
     newItem.appendChild(newLink);
     var semesterlist = document.getElementById("semesterlist");
