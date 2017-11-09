@@ -209,16 +209,6 @@
                 </div>
                 </div>
               </li>
-              <li class="accordion-item" id="M"><a href="#" class="item-content item-link">
-                <div class="item-inner">
-                  <div class="item-title">Mathematik</div>
-                </div></a>
-                <div class="accordion-item-content">
-                <div class="content-block">
-                  <p>P1</p>
-                </div>
-                </div>
-              </li>
               </ul>
             </div>
           </div>
@@ -257,67 +247,58 @@
         </div>
       </div>
 
-      <!-- ADD SUBJECTS POPUP -->
-      <div class="popup popup-addsem">
-        <div class="page-content">
-          <div class="list-block inset">
-
-        <!-- ADD SEMESTER POPUP -->
-				<div class="popup popup-addsem">
-          <div class="page-content">
-            <div class="list-block inset">
-              <ul>
-
-                <li>
-                  <div class="item-content">
-                    <div class="item-media"></div>
-                      <div class="item-inner">
-                        <div class="item-input">
-                          <input type="text" placeholder="Name the semester here" id="userInput">
-                        </div>
-                      </div>
-                  </div>
-                </li>
-
-              <!-- <div class="content-block-title">Select your preferred subjects</div>
-              <!-- Cancel & Submit -->
-            </ul>
-              <div class="row">
-                <div class="col-50">
-                  <a  href="#" class="close-popup button button-big active color-red">Cancel</a>
+        <!-- Template for Semester Pages -->
+          <script type="text/template" id="newSemesterPage">
+            <div class="page cached">
+              <div class="accordion-list">
+              <div class="content-block-title">Subjects</div>
+                <div class="list-block inset accordion-list">
+                  <ul>
+                  </ul>
                 </div>
-                <div class="col-50">
-                  <a id="newsemadd" href="#" class="close-popup button button-big active color-green">Submit</a>
+              </div>
+
+              <div class="toolbar tabbar tabbar-labels">
+                <div class="toolbar-inner">
+                  <a href="#" class="tab-link back">
+                    <i class="f7-icons">rewind</i>
+                    <span class="tabbar-label">Back</span>
+                  </a>
+              </div>
+            </div>
+            <a href="#" class="floating-button floating-button-to-popover open-popover color-purple" data-popup=".popup-menu">
+                <i class="f7-icons">add</i>
+            </a>
+            <div class="popover demo-menu">
+              <div class="popover-inner">
+                <div class="list-block">
+                  <ul>
+                    <li>
+                      <a href="#" class="prompt-newsem item-content item-link add-subject" id="addSubject">
+                        <div class="item-inner">
+                          <div class="item-title">Add Subjects</div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="item-content item-link" id="deleteSubject">
+                        <div class="item-inner">
+                          <div class="item-title">Delete Subjects</div>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- NEWSEM Template -->
-          <template id="newsem-template">
-            <div class="page cached" id="templ" data-page="zz">
-              <div class="accordion-list">
-                <div class="content-block-title">Subjects</div>
-                <div class="list-block inset accordion-list">
-                  <ul>
-                    <li class="accordion-item" id="D">
-                      <a href="#" class="item-content item-link">
-                        <div class="item-inner">
-                          <div class="item-title">Deutsch</div>
-                        </div>
-                      </a>
-                    </li>
-                  </div>
-                </div>
-              </div>
-            </template>
+          </script>
 
 
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 
     <!-- Path to Framework7 Library JS-->

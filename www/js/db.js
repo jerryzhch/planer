@@ -38,7 +38,6 @@ refGradelist.on('child_added', addChild)
   function addChild(data){
     var Semester = data.val();
     var keys = Object.keys(Semester);
-    console.log(keys);
     for (var i = 0; i < keys.length; i++){
       var toRemove = document.createElement('div');
       var newItem = document.createElement("li");
@@ -57,12 +56,12 @@ refSemester.on('value', gotData, errData);
 
 function gotData(data){
 
-  document.getElementById('semesterlist').empty('');
+  var list = document.getElementById('semesterlist');
+  list.innerHTML = "";
 
   //console.log(data.val());
   var Semester = data.val();
   var keys = Object.keys(Semester);
-  console.log(keys);
   for (var i = 0; i < keys.length; i++){
     var k = keys[i];
     var semname = Semester[k].semname;
@@ -72,7 +71,7 @@ function gotData(data){
     var newLink = document.createElement("a");  // Create a <a> node
     var textnode = document.createTextNode(semname);
     newLink.href = "#" + semname;
-    newLink.setAttribute("class", "item-link list-button" )
+    newLink.setAttribute("class", "item-link list-button group" )
     newLink.setAttribute("id", semname)
     newLink.appendChild(textnode);
     newItem.appendChild(newLink);
@@ -88,3 +87,6 @@ function errData(data){
   console.log(err);
 
 }
+
+
+$$('a').hasClass('group'); //-> true
