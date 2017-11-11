@@ -8,12 +8,10 @@ var config = {
   storageBucket: "matur18-90b73.appspot.com",
   messagingSenderId: "268822264260"
 };
-firebase.initializeApp(config);
-
-//var database = firebase.database();
 
 // Get elements
 var semesterlist = document.getElementById("semesterlist");
+var gradelist = document.getElementById("gradelist")
 
 // Create Preferences
 var refSemester = firebase.database().ref().child('Semester');
@@ -29,6 +27,7 @@ $$('.prompt-new').on('click', function () {
         }
         console.log(data);
         refSemester.push(data);
+
     });
 });
 
@@ -69,7 +68,7 @@ function gotData(data){
     var newItem = document.createElement("li");
     //newItem.class('gradeelements');
     var newLink = document.createElement("a");  // Create a <a> node
-    var textnode = document.createTextNode(semname);v
+    var textnode = document.createTextNode(semname);
     newLink.href = "#" + semname;
     newLink.setAttribute("class", "item-link list-button group" )
     newLink.setAttribute("id", "sem+"+semname)

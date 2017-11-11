@@ -17,7 +17,7 @@
 
 		<script src="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.4.0/firebaseui.css" />
-    <script type="text/javascript">
+    <script>
       // FirebaseUI config.
       var uiConfig = {
         signInSuccessUrl: 'start.html',
@@ -29,7 +29,6 @@
         // Terms of service url.
         tosUrl: '<your-tos-url>'
       };
-
     </script>
 
 		<meta name="format-detection" content="telephone=no" />
@@ -67,5 +66,6 @@
 				</div>
 			</div>
 		</div>
+		<script>app.initialize();</script>
 	</body>
 </html>
