@@ -100,3 +100,48 @@ dbRefList.on('child_added', snap => {
      window.addEventListener('load', function() {
        initApp()
      });
+
+
+     var gradepage = '<div class="page cached" id="gradepage">'+
+                       '<div class="accordion-list">'+
+                       '<div class="content-block-title">Subjects</div>'+
+                         '<div class="list-block inset accordion-list">'+
+                           '<ul>'+
+                           '</ul>'+
+                         '</div>'+
+                       '</div>'+
+
+                       '<div class="toolbar tabbar tabbar-labels">'+
+                         '<div class="toolbar-inner">'+
+                           '<a href="#" class="tab-link back">'+
+                             '<i class="f7-icons">rewind</i>'+
+                             '<span class="tabbar-label">Back</span>'+
+                           '</a>'+
+                       '</div>'+
+                     '</div>'+
+                     '<a href="#" class="floating-button floating-button-to-popover open-popover color-purple" data-popup=".popup-menu">'+
+                         '<i class="f7-icons">add</i>'+
+                     '</a>'+
+                     '<div class="popover demo-menu">'+
+                       '<div class="popover-inner">'+
+                         '<div class="list-block">'+
+                           '<ul>'+
+                             '<li>'+
+                               '<a href="#" class="prompt-newsem item-content item-link add-subject" id="addSubject">'+
+                                 '<div class="item-inner">'+
+                                   '<div class="item-title">Add Subjects</div>'+
+                                 '</div>'+
+                               '</a>'+
+                             '</li>'+
+                             '<li>'+
+                               '<a href="#" class="item-content item-link" id="deleteSubject">'+
+                                 '<div class="item-inner">'+
+                                   '<div class="item-title">Delete Subjects</div>'+
+                                 '</div>'+
+                               '</a>'+
+                             '</li>'+
+                           '</ul>'+
+                         '</div>'+
+                       '</div>'+
+                     '</div>'+
+                   '</div>';
