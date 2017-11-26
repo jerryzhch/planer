@@ -5,6 +5,8 @@ var planix = new Framework7({
 
   // If it is webapp, we can enable hash navigation:
   pushState: true,
+  fastClicks: true,
+  tapHold: true,
 
   // Hide and show indicator during ajax requests
 onAjaxStart: function (xhr) {
@@ -32,13 +34,6 @@ var mainView = planix.addView('.view-main', {
     domCache: true
 });
 
-
-$$('.notification-default').on('click', function () {
-    planix.addNotification({
-        title: 'PlaniX',
-        message: 'This is a simple notification message with title and message'
-    });
-});
 function unknown() {
   // HTML Content of the new Semester Grades Page
   var newSemester = '<div class="page cached" data-page="semtest" id="demopage">'+
@@ -60,6 +55,7 @@ function unknown() {
                         '</div>'+
                       '</div>'+
                     '</div>';
-
-
 };
+$$('.group').on('taphold', function () {
+  planix.alert('Tap hold fired!');
+});

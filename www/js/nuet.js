@@ -1,3 +1,7 @@
+document.getElementById("demopage").setAttribute("datapage", semname);
+document.getElementById("demopage").setAttribute("id", semname);
+var newPage = document.getElementById("temp").innerHTML;
+pagelist.innerHTML += newPage;
 // Get elements
 var preObject = document.getElementById('semesters');
 var ulList = document.getElementById('list');

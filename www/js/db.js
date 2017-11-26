@@ -1,4 +1,26 @@
+// Initialize your app
+var planix = new Framework7({
+  // Default title for modals
+  modalTitle: 'PlaniX',
+
+  // If it is webapp, we can enable hash navigation:
+  pushState: true,
+
+  // Hide and show indicator during ajax requests
+onAjaxStart: function (xhr) {
+    planix.showIndicator();
+},
+onAjaxComplete: function (xhr) {
+    planix.hideIndicator();
+},
+
+});
 var $$ = Dom7;
+// Add view
+var mainView = planix.addView('.view-main', {
+    // Because we use fixed-through navbar we can enable dynamic navbar
+    domCache: true
+    });
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyD5MjBa0qzkpwzN0ThYAuvk8_pqXDG8Ibc",
@@ -17,18 +39,22 @@ var gradelist = document.getElementById("gradelist")
 var refSemester = firebase.database().ref().child('Semester');
 var refGradelist = refSemester.child('Gradeslist');
 
-
-var gradepage  =
-
-
+// PROMPT New Semester
 $$('.prompt-new').on('click', function () {
     planix.prompt('New Semester', 'PlaniX', function (userInput) {
-
+      if (userInput.match(/\s/g)){
+          planix.addNotification({
+            title: 'PlaniX - Notification',
+            message: 'Please do not use spaces between the characters. Use a dash (-) for example'
+          });
+        }
+      else{
         // New Firebase Database Entry
         var data = {
           semname: userInput
         }
         refSemester.push(data);
+      }
 
     });
 });
@@ -47,6 +73,16 @@ function gotData(data){
     var k = keys[i];
     var semname = Semester[k].semname;
 
+    /*CREATE PAGE
+    var newPage = document.createElement("div")
+    newPage.setAttribute("class", "page cached")
+    newPage.setAttribute("datapage", semname)
+    newPage.setAttribute("id", semname)
+    var itm   = document.getElementById("demopage").innerHTML;
+    newPage.innerHTML = itm
+    var container = document.getElementById("gradepagecontainer")
+    container.insertBefore(newPage, container.childNodes[0]);*/
+
     // CREATE LINK
     var newItem = document.createElement("li");
     var newLink = document.createElement("a");  // Create a <a> node
@@ -54,25 +90,14 @@ function gotData(data){
     newLink.href = "#" + semname;
     newLink.setAttribute("class", "item-link list-button group")
     newLink.setAttribute("id", semname);
+    newLink.setAttribute("onclick", "loadPage(this, "+semname+")")
     newLink.appendChild(textnode);
     newItem.appendChild(newLink);
     var semesterlist = document.getElementById("semesterlist");
     semesterlist.insertBefore(newItem, semesterlist.childNodes[0]);
-
-    //CREATE PAGE
-    var newPage = document.createElement("div");
-    newPage.setAttribute("class", "page-cached");
-    newPage.setAttribute("id", semname);
-    newPage.setAttribute("datapage", semname);
-    var container = document.getElementById("gradepagecontainer");
-    var itm = document.getElementById("template").innerHTML;
-    var itmNode = document.createTextNode(itm);
-    var cln = itmNode.cloneNode(true);
-    newPage.appendChild(cln);
-    container.insertBefore(newPage, container.childNodes[0]);
+    }
 }
 
-}
 
 // Sync list changes
 refGradelist.on('child_added', addChild)
