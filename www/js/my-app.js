@@ -19,12 +19,37 @@ swipeBackPage: false
 
 // Export selectors engine
 var $$ = Dom7;
-
+doesConnectionExist();
 // Add view
 var mainView = planix.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     domCache: true
 });
+function doesConnectionExist() {
+    var xhr = new XMLHttpRequest();
+    var file = "https://www.kirupa.com/blank.png";
+    var randomNum = Math.round(Math.random() * 10000);
+
+    xhr.open('HEAD', file + "?rand=" + randomNum, true);
+    xhr.send();
+
+    xhr.addEventListener("readystatechange", processRequest, false);
+
+    function processRequest(e) {
+      if (xhr.readyState == 4) {
+        if (xhr.status >= 200 && xhr.status < 304) {
+          console.log("Internet Connection exists!")
+        };
+        } else {
+          $$('.notification-default').on('click', function () {
+            planix.addNotification({
+                title: 'PlaniX ',
+                message: 'Please check your internet connection'
+            });
+        });
+        }
+      }
+    }
 
 // Initialize Firebase
 var config = {
@@ -63,7 +88,7 @@ $$('.prompt-newsem').on('click', function () {
 
     });
 });
-function newSubject(){
+function jsnewSubject(){
   $$('.prompt-newsubject').on('click', function () {
       planix.prompt('New Subject', 'PlaniX', function (userInput) {
         if (userInput.match(/\s/g)){

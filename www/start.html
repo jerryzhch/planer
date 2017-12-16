@@ -2,11 +2,11 @@
 
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#2196f3">    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
     <!-- Path to Framework7 Library CSS-->
     <link rel="stylesheet" href="css/framework7.ios.min.css">
     <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
@@ -57,7 +57,6 @@ firebase.initializeApp(config);
   				</div>
 
       <div class="pages navbar-through">
-         Pag has additional "with-subnavbar" class -->
          <div data-page="home" class="page with-subnavbar">
             <div class="page-content hide-bars-on-scroll">
               <div class="tabs">
@@ -157,8 +156,7 @@ firebase.initializeApp(config);
           <div class="navbar">
             <div class="navbar-inner">
               <div class="left back-link">
-                <a href="#" class="back link">
-                  <i class="f7-icons">chevron_left</i>
+                <a href="#" class="back link">Back
                 </a>
               </div>
               <div class="center">PlaniX</div>
@@ -204,6 +202,11 @@ firebase.initializeApp(config);
               <div class="row">
                 <div class="col-50">
                   <a href="#"  onClick="newSubject()" class="button button-big button-round active">New Subject</a>
+                  <script>
+                    function newSubject(){
+                      jsnewSubject();
+                    }
+                  </script>
                 </div>
                 <div class="col-50">
                   <a href="#" class="prompt-newsem button button-big button-round active">Log In</a>
