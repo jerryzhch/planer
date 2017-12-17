@@ -14,8 +14,19 @@
     <link rel="stylesheet" href="css/my-app.css">
 	  <link rel="stylesheet" href="css/framework7-icons.css">
     <title>Planix</title>
-    <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDkWuwARVtizDkF1NY1XEkLqtNubRNhyIg",
+        authDomain: "planix-app.firebaseapp.com",
+        databaseURL: "https://planix-app.firebaseio.com",
+        projectId: "planix-app",
+        storageBucket: "",
+        messagingSenderId: "263368692985"
+      };
+      firebase.initializeApp(config);
+    </script>
 </head>
 <body>
   <div class="views">
@@ -38,9 +49,6 @@
                 <div class="list-block inset">
                   <form>
                     <ul id="semesterlist">
-                      <li>
-                        <a href="https://www.srf.ch" id="demoSem" class="item-link list-button">HS 2017</a>
-                      </li>
                     </ul>
                   </form>
                 </div>
@@ -65,8 +73,67 @@
           </div>
         </div>
       </div>
+      <!-- DEMOPAGE GRADES-->
+      <div class="page cached" datapage="semtest "id="demopage">
+        <!-- HEADER -->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left back-link">
+              <a href="#" class="back link">Back
+              </a>
+            </div>
+            <div class="center">PlaniX</div>
+            <div class="right"></div>
+          </div>
+        </div>
 
-      <!-- Bottom Toolbar-->
+          <!-- Floating Action Button -->
+          <a href="addsubjects.html" class="floating-button color-pink">
+            <i class="f7-icons">add</i>
+          </a>
+
+        <div class="page-content hide-bars-on-scroll">
+          <div class="accordion-list">
+            <div class="content-block-title">Subjects</div>
+              <div class="list-block inset accordion-list">
+                <ul>
+
+                <li class="accordion-item" id="D">
+                  <a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title">Deutsch</div>
+                    </div>
+                  </a>
+                  <div class="accordion-item-content">
+                  <div class="content-block">
+                    <div class="data-table card ">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th class="label-cell">Exam</th>
+                            <th class="numeric-cell">Grade</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="label-cell">Kurztest</td>
+                            <td class="numeric-cell">4.7</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  </div>
+                </li>
+                </ul>
+              </div>
+            </div>
+
+
+        </div>
+      </div>
+
+      <!--
       <div class="toolbar">
         <div class="toolbar-inner">
           <a>
@@ -74,7 +141,7 @@
         </a>
         </div>
       </div>
-      <!-- /End of Bottom Toolbar-->
+    -->
 
     </div>
   </div>

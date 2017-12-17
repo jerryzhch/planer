@@ -13,53 +13,31 @@ onAjaxStart: function (xhr) {
 onAjaxComplete: function (xhr) {
     planix.hideIndicator();
 },
-swipeBackPage: false
+swipeBackPage: true
 
 });
 
 // Export selectors engine
 var $$ = Dom7;
-doesConnectionExist();
 // Add view
 var mainView = planix.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     domCache: true
 });
-function doesConnectionExist() {
-    var xhr = new XMLHttpRequest();
-    var file = "https://www.kirupa.com/blank.png";
-    var randomNum = Math.round(Math.random() * 10000);
 
-    xhr.open('HEAD', file + "?rand=" + randomNum, true);
-    xhr.send();
+var isNewUser = true;
+var ref = firebase.database().ref();
+ref.onAuth(function(authData) {
+  if (authData && isNewUser) {
+    // save the user's profile into the database so we can list users,
+    // use them in Security and Firebase Rules, and show profiles
+    ref.child("users").child(authData.uid).set({
+      provider: authData.provider,
+      name: getName(authData)
+    });
+  }
+});
 
-    xhr.addEventListener("readystatechange", processRequest, false);
-
-    function processRequest(e) {
-      if (xhr.readyState == 4) {
-        if (xhr.status >= 200 && xhr.status < 304) {
-          console.log("Internet Connection exists!")
-        };
-        } else {
-          $$('.notification-default').on('click', function () {
-            planix.addNotification({
-                title: 'PlaniX ',
-                message: 'Please check your internet connection'
-            });
-        });
-        }
-      }
-    }
-
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyD5MjBa0qzkpwzN0ThYAuvk8_pqXDG8Ibc",
-  authDomain: "matur18-90b73.firebaseapp.com",
-  databaseURL: "https://matur18-90b73.firebaseio.com",
-  projectId: "matur18-90b73",
-  storageBucket: "matur18-90b73.appspot.com",
-  messagingSenderId: "268822264260"
-};
 
 // Get elements
 var semesterlist = document.getElementById("semesterlist");
@@ -88,27 +66,6 @@ $$('.prompt-newsem').on('click', function () {
 
     });
 });
-function jsnewSubject(){
-  $$('.prompt-newsubject').on('click', function () {
-      planix.prompt('New Subject', 'PlaniX', function (userInput) {
-        if (userInput.match(/\s/g)){
-            planix.addNotification({
-              title: 'PlaniX - Notification',
-              message: 'Please do not use spaces between the characters. Use a dash (-) for example'
-            });
-          }
-        else{
-          // New Firebase Database Entry
-          var data = {
-            semname: userInput
-          }
-          refSemester.push(data);
-        }
-
-      });
-  });
-}
-
 
 refSemester.on('value', gotData);
 
@@ -170,3 +127,9 @@ refGradelist.on('child_added', addChild)
       semesterlist.insertBefore(toRemove, semesterlist.childNodes[0]);
   }
 }
+
+//document.getElementById("myBtn").addEventListener("click", addsubjects);
+
+  function addsubjects (){
+
+  }
