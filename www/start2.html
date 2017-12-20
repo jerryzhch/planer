@@ -132,6 +132,18 @@
 
         </div>
       </div>
+      <script>
+      var user = firebase.auth().currentUser;
+      var name, email, uid, emailVerified;
+
+      if (user!= null){
+        name = user.displayName
+        email = user.email
+        emailVerified = user.emailVerified;
+        uid = user.uid
+        console.log(name);
+      }
+      </script>
 
       <!--
       <div class="toolbar">

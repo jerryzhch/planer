@@ -149,3 +149,16 @@ dbRefList.on('child_added', snap => {
                        '</div>'+
                      '</div>'+
                    '</div>';
+
+                   var isNewUser = true;
+                   var ref = firebase.database().ref();
+                   ref.onAuth(function(authData) {
+                     if (authData && isNewUser) {
+                       // save the user's profile into the database so we can list users,
+                       // use them in Security and Firebase Rules, and show profiles
+                       ref.child("users").child(authData.uid).set({
+                         provider: authData.provider,
+                         name: getName(authData)
+                       });
+                     }
+                   });

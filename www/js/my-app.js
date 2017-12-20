@@ -16,6 +16,9 @@ onAjaxComplete: function (xhr) {
 swipeBackPage: true
 
 });
+//userstate();
+
+writeUserData();
 
 // Export selectors engine
 var $$ = Dom7;
@@ -25,27 +28,43 @@ var mainView = planix.addView('.view-main', {
     domCache: true
 });
 
-var isNewUser = true;
-var ref = firebase.database().ref();
-ref.onAuth(function(authData) {
-  if (authData && isNewUser) {
-    // save the user's profile into the database so we can list users,
-    // use them in Security and Firebase Rules, and show profiles
-    ref.child("users").child(authData.uid).set({
-      provider: authData.provider,
-      name: getName(authData)
-    });
-  }
-});
-
 
 // Get elements
 var semesterlist = document.getElementById("semesterlist");
 var gradelist = document.getElementById("gradelist")
 
 // Create Preferences
-var refSemester = firebase.database().ref().child('Semester');
-var refGradelist = refSemester.child('Gradeslist');
+var refUsers = firebase.database().ref().child('Users')
+var refSemester = firebase.database().ref().child('Users').child('Semester');
+var refGradelist =  firebase.database().ref().child('Users').child('Semester').child('Gradeslist');
+
+function writeUserData(){
+  refUsers.set({
+    user: email,
+    uid: uid
+  })
+}
+/*function userstate(){
+  firebase.auth().onAuthStateChanged(function(user){
+    if (user){
+      /*var user = firebase.auth().currentUser;
+      var name, email, uid, emailVerified;
+      if (user!= null){
+        name = user.displayName
+        email = user.email
+        emailVerified = user.emailVerified;
+        uid = user.uid
+        console.log(name, email, emailVerified, uid);
+        var users = {
+          user: email,
+          uid: uid
+        }
+        refUsers.push(users)
+      }
+    }
+  })
+}*/
+
 
 // PROMPT New Semester
 $$('.prompt-newsem').on('click', function () {
@@ -79,7 +98,7 @@ function gotData(data){
   var keys = Object.keys(Semester);
   for (var i = 0; i < keys.length; i++){
     var k = keys[i];
-    var semname = Semester[k].semname;
+    var semname = Users[k].semname;
 
     /*CREATE PAGE
     var newPage = document.createElement("div")
