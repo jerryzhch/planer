@@ -3,22 +3,17 @@ var planix = new Framework7({
   // Default title for modals
   modalTitle: 'PlaniX',
 
-  // If it is webapp, we can enable hash navigation:
-  pushState: true,
-
   // Hide and show indicator during ajax requests
-onAjaxStart: function (xhr) {
-    planix.showIndicator();
-},
-onAjaxComplete: function (xhr) {
-    planix.hideIndicator();
-},
-swipeBackPage: true
+  onAjaxStart: function (xhr) {
+      planix.showIndicator();
+  },
+  onAjaxComplete: function (xhr) {
+      planix.hideIndicator();
+  },
+  swipeBackPage: true,
+  domCache: true
 
 });
-//userstate();
-
-writeUserData();
 
 // Export selectors engine
 var $$ = Dom7;
@@ -29,42 +24,51 @@ var mainView = planix.addView('.view-main', {
 });
 
 
+
+
+firebase.auth().onAuthStateChanged(function(user){
 // Get elements
 var semesterlist = document.getElementById("semesterlist");
 var gradelist = document.getElementById("gradelist")
 
-// Create Preferences
-var refUsers = firebase.database().ref().child('Users')
-var refSemester = firebase.database().ref().child('Users').child('Semester');
-var refGradelist =  firebase.database().ref().child('Users').child('Semester').child('Gradeslist');
+// Get User Infos
+var user = firebase.auth().currentUser;
 
-function writeUserData(){
-  refUsers.set({
-    user: email,
-    uid: uid
-  })
-}
-/*function userstate(){
-  firebase.auth().onAuthStateChanged(function(user){
+// Create Preferences
+var db = firebase.database().ref()
+var refUsers = db.child('Users')
+
+
+// ---------------------------------
+window.addEventListener('load', function() {
     if (user){
-      /*var user = firebase.auth().currentUser;
-      var name, email, uid, emailVerified;
+      var email, uid;
       if (user!= null){
-        name = user.displayName
+        displayName = user.displayName
         email = user.email
-        emailVerified = user.emailVerified;
         uid = user.uid
-        console.log(name, email, emailVerified, uid);
-        var users = {
-          user: email,
-          uid: uid
+        planix.addNotification({
+          title: 'PlaniX - Notification',
+          message: 'Welcome to PlaniX. You are logged in as '+window.email+'.'
+        });
+        var user = {
+          useremail: email
         }
-        refUsers.push(users)
+        /*refUsers.once('value', function(snapshot) {
+            if (!snapshot.hasChild(email)) {
+                refUsers.child(email).set({ name: email });
+            }
+            else {
+                alert("That user already exists");
+            }
+        });*/
+        //refUsers.child(displayName).push(user);
       }
     }
-  })
-}*/
+});
 
+//-----------------------------------------------
+var refSemester = refUsers.child(user.displayName)
 
 // PROMPT New Semester
 $$('.prompt-newsem').on('click', function () {
@@ -72,83 +76,150 @@ $$('.prompt-newsem').on('click', function () {
       if (userInput.match(/\s/g)){
           planix.addNotification({
             title: 'PlaniX - Notification',
-            message: 'Please do not use spaces between the characters. Use a dash (-) for example'
+            message: 'Please do not use spaces between the characters.'
           });
         }
+      if (userInput == ""){
+        planix.addNotification({
+          title: 'PlaniX - Notification',
+          message: 'An empty input is not allowed'
+        });
+      }
       else{
         // New Firebase Database Entry
         var data = {
           semname: userInput
         }
-        refSemester.push(data);
+        refUsers.child(user.displayName).push(data).set(data);
       }
 
     });
 });
 
-refSemester.on('value', gotData);
 
-function gotData(data){
 
-  var list = document.getElementById('semesterlist');
-  list.innerHTML = "";
+// LIST sync after login
+/*refSemester.once('value', snap => {
 
-  //console.log(data.val());
-  var Semester = data.val();
+  semesterlist.innerHTML = ""
+
+
+  var Semester = snap.val();
   var keys = Object.keys(Semester);
   for (var i = 0; i < keys.length; i++){
     var k = keys[i];
-    var semname = Users[k].semname;
+    var semname = Semester[k].semname;
 
-    /*CREATE PAGE
-    var newPage = document.createElement("div")
-    newPage.setAttribute("class", "page cached")
-    newPage.setAttribute("datapage", semname)
-    newPage.setAttribute("id", semname)
-    var itm   = document.getElementById("demopage").innerHTML;
-    newPage.innerHTML = itm
-    var container = document.getElementById("gradepagecontainer")
-    container.insertBefore(newPage, container.childNodes[0]);*/
+  // CREATE LINK with Delete Swipeout
+  var swipeout = document.createElement("li")
+  var swipeoutcontent = document.createElement("div")
+  swipeoutcontent.setAttribute("class", "swipeout-content")
+  swipeout.setAttribute("class", "swipeout")
+  swipeout.setAttribute("id", k)
+  var newLink = document.createElement("a");  // Create a <a> node
+  var textnode = document.createTextNode(semname);
+  newLink.href = "#"+semname;
+  newLink.setAttribute("class", "item-link list-button")
+  newLink.setAttribute("id", semname);
+  newLink.setAttribute("onClick", "createPage(this.id)");
+  //newLink.setAttribute("onclick", "reply_click(this.id)")
+  newLink.appendChild(textnode);
+  swipeoutcontent.appendChild(newLink)
+  var swiperight = document.createElement("div")
+  swiperight.setAttribute("class", "swipeout-actions-right")
+  var swiperightdelete = document.createElement("a")
+  swiperightdelete.setAttribute("class", "swipeout-delete")
+  swiperightdelete.setAttribute("data-confirm", "Are you sure want to delete this item?")
+  swiperightdelete.setAttribute("data-confirm-title", "Delete?")
+  swiperightdelete.setAttribute("data-close-on-cancel", "true")
+  swiperightdelete.href = "#"
+  swiperightdelete.innerHTML = "Delete"
+  swiperight.appendChild(swiperightdelete)
+  swipeout.appendChild(swiperight)
+  swipeout.appendChild(swipeoutcontent);
+  semesterlist.insertBefore(swipeout, semesterlist.childNodes[0])
 
-    // CREATE LINK
-    var newItem = document.createElement("li");
-    var newLink = document.createElement("a");  // Create a <a> node
-    var textnode = document.createTextNode(semname);
-    newLink.href = "#" + semname;
-    newLink.setAttribute("class", "item-link list-button group")
-    newLink.setAttribute("id", semname);
-    newLink.setAttribute("onclick", "loadPage(this, "+semname+")")
-    newLink.appendChild(textnode);
-    newItem.appendChild(newLink);
-    var semesterlist = document.getElementById("semesterlist");
-    semesterlist.insertBefore(newItem, semesterlist.childNodes[0]);
-    }
+
 }
+});*/
+
 
 
 // Sync list changes
-refGradelist.on('child_added', addChild)
+refSemester.on('child_added', snap => {
 
+  var Semester = snap.val()
+  var semname  = Object.values(Semester)
+//  var semname = Semester[key].semname;
+
+  // CREATE LINK with Delete Swipeout
+  var swipeout = document.createElement("li")
+  var swipeoutcontent = document.createElement("div")
+  swipeoutcontent.setAttribute("class", "swipeout-content")
+  swipeout.setAttribute("class", "swipeout")
+  swipeout.setAttribute("id", snap.key)
+  var newLink = document.createElement("a");  // Create a <a> node
+  var textnode = document.createTextNode(semname);
+  newLink.href = "#"+semname;
+  newLink.setAttribute("class", "item-link list-button")
+  newLink.setAttribute("id", semname);
+  newLink.setAttribute("onClick", "createPage(this.id)");
+  //newLink.setAttribute("onclick", "reply_click(this.id)")
+  newLink.appendChild(textnode);
+  swipeoutcontent.appendChild(newLink)
+  var swiperight = document.createElement("div")
+  swiperight.setAttribute("class", "swipeout-actions-right")
+  var swiperightdelete = document.createElement("a")
+  swiperightdelete.setAttribute("class", "swipeout-delete")
+  swiperightdelete.setAttribute("data-confirm", "Are you sure want to delete this item?")
+  swiperightdelete.setAttribute("data-confirm-title", "Delete?")
+  swiperightdelete.href = "#"
+  swiperightdelete.innerHTML = "Delete"
+  swiperight.appendChild(swiperightdelete)
+  swipeout.appendChild(swiperight)
+  swipeout.appendChild(swipeoutcontent);
+  semesterlist.insertBefore(swipeout, semesterlist.childNodes[0])
+
+})
+
+  refSemester.on('child_removed', snap => {
+    var semesterToRemove = document.getElementById(snap.key)
+    console.log(snap.key)
+    console.log(semesterToRemove.innerHTML+" has been deleted")
+    semesterToRemove.remove()
+  })
+
+/*
   function addChild(data){
     var Semester = data.val();
     var keys = Object.keys(Semester);
     for (var i = 0; i < keys.length; i++){
-      var toRemove = document.createElement('div');
-      var newItem = document.createElement("li");
-      var newLink = document.createElement("a");
-      var textnode = document.createTextNode(userInput);
-      newLink.setAttribute("class", "item-link list-button" )
-      newLink.setAttribute("id", userInput)
+
+
+      var swipeout = document.createElement("li")
+      var swipeoutcontent = document.createElement("div")
+      swipeoutcontent.setAttribute("class", "swipeout-content")
+      swipeout.setAttribute("class", "swipeout")
+      var newLink = document.createElement("a");  // Create a <a> node
+      var textnode = document.createTextNode(semname);
+      newLink.href = "#"+semname;
+      newLink.setAttribute("class", "item-link list-button")
+      newLink.setAttribute("id", semname);
+      //newLink.setAttribute("onclick", "reply_click(this.id)")
       newLink.appendChild(textnode);
-      newItem.appendChild(newLink);
-      toRemove.appendChild(newItem);
-      var semesterlist = document.getElementById("semesterlist");
-      semesterlist.insertBefore(toRemove, semesterlist.childNodes[0]);
+      swipeoutcontent.appendChild(newLink)
+      var swiperight = document.createElement("div")
+      swiperight.setAttribute("class", "swipeout-actions-right")
+      var swiperightdelete = document.createElement("a")
+      swiperightdelete.setAttribute("class", "swipeout-delete")
+      swiperightdelete.setAttribute("data-confirm", "Are you sure want to delete this item?")
+      swiperightdelete.setAttribute("data-confirm-title", "Delete?")
+      swiperightdelete.href = "#"
+      swiperightdelete.innerHTML = "Delete"
+      swiperight.appendChild(swiperightdelete)
+      swipeout.appendChild(swiperight)
+      swipeout.appendChild(swipeoutcontent);
+      semesterlist.insertBefore(swipeout, semesterlist.childNodes[0])
   }
-}
-
-//document.getElementById("myBtn").addEventListener("click", addsubjects);
-
-  function addsubjects (){
-
-  }
+}*/
+});

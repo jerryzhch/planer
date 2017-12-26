@@ -162,3 +162,27 @@ dbRefList.on('child_added', snap => {
                        });
                      }
                    });
+
+
+                     var Semester = data.val();
+                     var keys = Object.keys(Semester);
+                     for (var i = 0; i < keys.length; i++){
+                       var k = keys[i];
+                       var semname = Semester[k].semname;
+
+
+                       var swipeout = document.createElement("li")
+                       var swipeoutcontent = document.createElement("div")
+                       swipeoutcontent.setAttribute("class", "swipeout-content")
+                       swipeout.setAttribute("class", "swipeout")
+                       var newItem = document.createElement("li");
+                       var newLink = document.createElement("a");  // Create a <a> node
+                       var textnode = document.createTextNode(semname);
+                       newLink.href = "#"+semname;
+                       newLink.setAttribute("class", "item-link list-button")
+                       newLink.setAttribute("id", semname);
+                       newLink.setAttribute("onclick", "reply_click(this.id)")
+                       newLink.appendChild(textnode);
+                       newItem.appendChild(newLink);
+                       var semesterlist = document.getElementById("semesterlist");
+                       semesterlist.insertBefore(newItem, semesterlist.childNodes[0])
