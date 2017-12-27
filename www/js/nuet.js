@@ -186,3 +186,39 @@ dbRefList.on('child_added', snap => {
                        newItem.appendChild(newLink);
                        var semesterlist = document.getElementById("semesterlist");
                        semesterlist.insertBefore(newItem, semesterlist.childNodes[0])
+
+                       $$('.create-popup').on('click', function () {
+                         var popupHTML = '<div class="popup">'+
+                                           '<div class="content-block">'+
+                                           '<div class="content-block-title">Add Subject</div>'+
+                                             '<div id="my-list" class="list-block inset">'+
+                                               '<form id="my-form" class="list-block inset">'+
+                                                   '<ul>'+
+                                                   '<li>'+
+                                                     '<label class="label-checkbox item-content">'+
+                                                     '<input type="checkbox" name="Mathematik" value="Mathematik">'+
+                                                     '<div class="item-media">'+
+                                                       '<i class="icon icon-form-checkbox"></i>'+
+                                                     '</div>'+
+                                                     '<div class="item-inner">'+
+                                                       '<div class="item-title">Mathematik</div>'+
+                                                     '</div>'+
+                                                     '</label>'+
+                                                   '</li>'+
+                                                   '<li>'+
+                                                     '<label class="label-checkbox item-content">'+
+                                                     '<input type="checkbox" name="Geometrie" value="Geometrie">'+
+                                                     '<div class="item-media">'+
+                                                       '<i class="icon icon-form-checkbox"></i>'+
+                                                     '</div>'+
+                                                     '<div class="item-inner">'+
+                                                       '<div class="item-title">Geometrie</div>'+
+                                                     '</div>'+
+                                                     '</label>'+
+                                                   '</li>'+
+                                                   '</ul>'+
+                                               '</form>'+
+                                             '</div>'+
+                                           '</div>'+
+                                         '</div>'
+                         planix.popup(popupHTML);});
