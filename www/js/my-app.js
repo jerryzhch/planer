@@ -1,7 +1,7 @@
 // Initialize your app
 var planix = new Framework7({
   // Default title for modals
-  modalTitle: 'PlaniX',
+  modalTitle: 'PlaniX - Notification',
 
   pushState: true,
 
@@ -30,7 +30,9 @@ var palette = ['92B558', '79C753', '66ff00', 'C48F65', '98B4D4', 'FAE03C', 'DD41
 firebase.auth().onAuthStateChanged(function(user){
   // Get elements
   var semesterlist = document.getElementById("semesterlist");
-  var subjectslist = document.getElementById("subjectslist")
+  var subjectslist = document.getElementById("subjectslist");
+  var subjectlist = [];
+  var btn = document.getElementById("addsubject")
 
   // Get User Infos
   var user = firebase.auth().currentUser;
@@ -66,10 +68,7 @@ firebase.auth().onAuthStateChanged(function(user){
   $$('.prompt-newsem').on('click', function () {
       planix.prompt('New Semester', 'PlaniX', function (userInput) {
         if (userInput == ""){
-          planix.addNotification({
-            title: 'PlaniX - Notification',
-            message: 'An empty input is not allowed'
-          });
+          planix.planix('An empty input is not allowed')
         }
         else{
           // New Firebase Database Entry
@@ -82,13 +81,11 @@ firebase.auth().onAuthStateChanged(function(user){
       });
   });
 
+  // PROMPT New Semester
   $$('.prompt-newsub').on('click', function () {
       planix.prompt('New Subject', 'PlaniX', function (userInput) {
         if (userInput == ""){
-          planix.addNotification({
-            title: 'PlaniX - Notification',
-            message: 'An empty input is not allowed'
-          });
+          planix.planix('An empty input is not allowed')
         }
         else{
           // New Firebase Database Entry
@@ -97,19 +94,24 @@ firebase.auth().onAuthStateChanged(function(user){
           }
           refSubjects.push(sub);
         }
+
       });
   });
 
-	$$('.accordion-item').on('accordion:opened', function () {
-	  alert('Accordion item opened');
-	}); 
-	 
-	$$('.accordion-item').on('accordion:closed', function (e) {
-	  alert('Accordion item closed');
-	});    
-
-
-
+  var pickerGrade = planix.picker({
+      input: '#picker-grade',
+      rotateEffect: true,
+      cols: [
+          {
+              textAlign: 'center',
+              values: ('1 2 3 4 5 6').split(' ')
+          },
+          {
+              values: ('.0 .1 .2 .3 .4 .5 .6 .7 .8 .9').split(' ')
+          },
+      ]
+  });
+// -----------------------------------------------------
 
   // Sync list changes
   refSemester.on('child_added', snap => {
@@ -155,15 +157,20 @@ firebase.auth().onAuthStateChanged(function(user){
   refSubjects.on('child_added', snap => {
 
     var rand = palette[Math.floor(Math.random() * palette.length)];
-    console.log(rand)
 
     var subname = snap.val().SubjectName
+
+    subjectlist.push(subname)
+
+
 
     // CREATE LINK with Delete Swipeout
     var newItem = document.createElement("li")
     newItem.setAttribute("class", "accordion-item")
+    newItem.setAttribute("title", subname)
     newItem.setAttribute("id", snap.key)
     newItem.setAttribute("style", "background-color:#"+rand+";")
+    newItem.setAttribute("onClick", "addsubject(this.id)");
     var newLink = document.createElement("a")
     newLink.href = "#"
     newLink.setAttribute("class", "item-content item-link")
@@ -195,6 +202,8 @@ firebase.auth().onAuthStateChanged(function(user){
 
 
   });
+
+
   refSubjects.on('child_removed', snap => {
     var subjectToRemove = document.getElementById(snap.key)
     console.log(snap.key)

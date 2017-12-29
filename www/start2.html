@@ -63,23 +63,28 @@
           <div class="page-content">
 
           <!-- Floating Action Button -->
-          <a href="#" class="floating-button color-pink prompt-newsub">
-            <i class="f7-icons">adds</i>
+          <a href="#" class="prompt-newsub floating-button color-pink">
+            <i class="f7-icons">add</i>
           </a>
 
-          <div class="accordion-list">
             <div class="content-block-title">Subjects</div>
               <div class="list-block inset accordion-list">
-                <ul id="subjectslist">
-
-
-
-                </ul>
+                  <ul id="subjectslist">
+                  </ul>
+                  <script>
+                  function addsubject(clicked_id) {
+                    var name = document.getElementById(clicked_id).getAttribute("title")
+                    var btn = document.getElementById("addsubject")
+                    var popuptitle = document.getElementById("popuptitle")
+                    btn.innerHTML = "Add grade to "+name
+                    popuptitle.innerHTML = "Add grade to '"+name+"'"
+                  }
+                  </script>
               </div>
-            </div>
-
+              <a href="#" data-popup=".popup-about" id="addsubject" class="open-popup button button-big button-round active">Add grade to ... </a>
           </div>
         </div>
+
 
 
 
@@ -90,6 +95,42 @@
     </div>
   </div>
 
+  <!-- About Popup -->
+  <div class="popup popup-about">
+    <div class="content-block">
+      <div id="popuptitle"class="content-block-title">You did not chose a subject!</div>
+      <form id="my-form" class="list-block">
+        <ul>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-input">
+                  <input type="text" name="name" placeholder="Exam description">
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-input">
+                  <input type="text" name="grade" placeholder="Your grade">
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </form>
+      <div class="row">
+        <div class="col-50">
+          <a href="#" class="close-popup button button-big active">Cancel</a>
+        </div>
+        <div class="col-50">
+          <a href="#" class="button button-big button-green active">Submit</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <!-- Path to Framework7 Library JS-->
     <script type="text/javascript" src="js/framework7.min.js"></script>
