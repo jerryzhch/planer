@@ -222,3 +222,10 @@ dbRefList.on('child_added', snap => {
                                            '</div>'+
                                          '</div>'
                          planix.popup(popupHTML);});
+
+                         if (userInput.match(/\s/g)){
+                             planix.addNotification({
+                               title: 'PlaniX - Notification',
+                               message: 'Please do not use spaces between the characters.'
+                             });
+                           }
