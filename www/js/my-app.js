@@ -34,14 +34,16 @@ firebase.auth().onAuthStateChanged(function(user){
   var subjectlist = [];
   var btn = document.getElementById("addsubject")
 
+
   // Get User Infos
   var user = firebase.auth().currentUser;
 
   // Create references
   var db = firebase.database().ref()
-  var refUsers = db.child('Users')
-  var refSemester = refUsers.child(user.displayName)
-  var refSubjects = db.child('Subjects').child(user.displayName)
+  var refUser = db.child(user.displayName)
+  var refSemester = refUser.child("Semesters")
+  var refSubject = refUser.child("Subjects")
+  var refGrade = refUser.child('Grades')
 
 
   // ---------------------------------
@@ -75,74 +77,67 @@ firebase.auth().onAuthStateChanged(function(user){
           var sem = {
             SemesterName: userInput
           }
-          refSemester.push(sem).set(sem);
+          refUser.child(userInput).set(userInput)
         }
 
       });
   });
-
-  // PROMPT New Semester
-  $$('.prompt-newsub').on('click', function () {
-      planix.prompt('New Subject', 'PlaniX', function (userInput) {
-        if (userInput == ""){
-          planix.planix('An empty input is not allowed')
-        }
-        else{
-          // New Firebase Database Entry
-          var sub = {
-            SubjectName: userInput
+    // PROMPT New Semester
+    $$('.prompt-newsub').on('click', function () {
+        planix.prompt('New Subject', 'PlaniX', function (userInput) {
+          if (userInput == ""){
+            planix.planix('An empty input is not allowed')
           }
-          refSubjects.push(sub);
-        }
+          else{
+            // New Firebase Database Entry
+            var sub = {
+              SubjectName: userInput
+            }
+                refUser.child(window.id).push(sub)
+              }
+          })
 
-      });
-  });
+        });
 
-  var pickerGrade = planix.picker({
-      input: '#picker-grade',
-      rotateEffect: true,
-      cols: [
-          {
-              textAlign: 'center',
-              values: ('1 2 3 4 5 6').split(' ')
-          },
-          {
-              values: ('.0 .1 .2 .3 .4 .5 .6 .7 .8 .9').split(' ')
-          },
-      ]
+
+  $$('.form-to-data').on('click', function(){
+    var formData = planix.formToData('#my-form');
+    refGrade.push(formData)
   });
 // -----------------------------------------------------
 
   // Sync list changes
-  refSemester.on('child_added', snap => {
+  refUser.on('child_added', snap => {
 
     var Semester = snap.val()
     var semname  = Object.values(Semester)
 
-    // CREATE LINK with Delete Swipeout
-    var swipeout = document.createElement("li")
-    var swipeoutcontent = document.createElement("div")
-    swipeoutcontent.setAttribute("class", "swipeout-content")
-    swipeout.setAttribute("class", "swipeout")
-    swipeout.setAttribute("id", snap.key)
-    var newLink = document.createElement("a");  // Create a <a> node
-    var textnode = document.createTextNode(semname);
-    newLink.href = "#subjects";
-    newLink.setAttribute("class", "item-link list-button")
-    newLink.setAttribute("id", semname);
-    //newLink.setAttribute("onClick", "nav(this.id)");
-    newLink.appendChild(textnode);
-    swipeoutcontent.appendChild(newLink)
-    var swiperight = document.createElement("div")
-    swiperight.setAttribute("class", "swipeout-actions-right")
-    var swiperightdelete = document.createElement("a")
-    swiperightdelete.setAttribute("class", "swipeout-delete")
-    swiperightdelete.href = "#"
-    swiperightdelete.innerHTML = "Delete"
-    swiperight.appendChild(swiperightdelete)
-    swipeout.appendChild(swiperight)
-    swipeout.appendChild(swipeoutcontent);
-    semesterlist.insertBefore(swipeout, semesterlist.childNodes[0])
+
+      // CREATE LINK with Delete Swipeout
+      var swipeout = document.createElement("li")
+      var swipeoutcontent = document.createElement("div")
+      swipeoutcontent.setAttribute("class", "swipeout-content")
+      swipeout.setAttribute("class", "swipeout")
+      swipeout.setAttribute("id", snap.key)
+      var newLink = document.createElement("a");  // Create a <a> node
+      var textnode = document.createTextNode(semname);
+      newLink.href = "#subjects";
+      newLink.setAttribute("class", "item-link list-button")
+      newLink.setAttribute("id", semname);
+      newLink.setAttribute("onClick", "nav(this.id)");
+      newLink.appendChild(textnode);
+      swipeoutcontent.appendChild(newLink)
+      var swiperight = document.createElement("div")
+      swiperight.setAttribute("class", "swipeout-actions-right")
+      var swiperightdelete = document.createElement("a")
+      swiperightdelete.setAttribute("class", "swipeout-delete")
+      swiperightdelete.href = "#"
+      swiperightdelete.innerHTML = "Delete"
+      swiperight.appendChild(swiperightdelete)
+      swipeout.appendChild(swiperight)
+      swipeout.appendChild(swipeoutcontent);
+      semesterlist.insertBefore(swipeout, semesterlist.childNodes[0])
+
 
   });
 
@@ -153,65 +148,82 @@ firebase.auth().onAuthStateChanged(function(user){
     semesterToRemove.remove()
   });
 
-  // Sync list changes
-  refSubjects.on('child_added', snap => {
 
-    var rand = palette[Math.floor(Math.random() * palette.length)];
+  // Sync list changes SUBJECTS
+  refSubject.on('child_added', snap => {
 
-    var subname = snap.val().SubjectName
+      var rand = palette[Math.floor(Math.random() * palette.length)];
+      var Subject = snap.val()
+      var subname = Object.values(Subject)
 
-    subjectlist.push(subname)
-
-
-
-    // CREATE LINK with Delete Swipeout
-    var newItem = document.createElement("li")
-    newItem.setAttribute("class", "accordion-item")
-    newItem.setAttribute("title", subname)
-    newItem.setAttribute("id", snap.key)
-    newItem.setAttribute("style", "background-color:#"+rand+";")
-    newItem.setAttribute("onClick", "addsubject(this.id)");
-    var newLink = document.createElement("a")
-    newLink.href = "#"
-    newLink.setAttribute("class", "item-content item-link")
-    var itemInner = document.createElement("div")
-    itemInner.setAttribute("class", "item-inner")
-    var itemTitle = document.createElement("div")
-    itemTitle.setAttribute("class", "item-title")
-    itemTitle.innerHTML = subname
-    itemInner.appendChild(itemTitle)
-    newLink.appendChild(itemInner)
-    newItem.appendChild(newLink)
-    var newItemcontent = document.createElement("div")
-    newItemcontent.setAttribute("class", "accordion-item-content")
-    var card = document.createElement("div")
-    card.setAttribute("class", "data-table card")
-    var contentblock = document.createElement("div")
-    contentblock.setAttribute("class", "content-block")
-    var table = document.createElement("table")
-    var thead = document.createElement("thead")
-    var tr = document.createElement("tr")
-    tr.innerHTML = "<th class='label-cell'>Exam</th><th class='numeric-cell'>Grade</th>"
-    thead.appendChild(tr)
-    table.appendChild(thead)
-    card.appendChild(table)
-    contentblock.appendChild(card)
-    newItemcontent.appendChild(contentblock)
-    newItem.appendChild(newItemcontent)
-    subjectslist.insertBefore(newItem, subjectslist.childNodes[0])
-
+      // CREATE LINK
+      var newItem = document.createElement("li")
+      newItem.setAttribute("class", "accordion-item")
+      newItem.setAttribute("title", subname)
+      newItem.setAttribute("id", snap.key)
+      newItem.setAttribute("style", "background-color:#"+rand+";")
+      newItem.setAttribute("onClick", "addsubject(this.id)");
+      var newLink = document.createElement("a")
+      newLink.href = "#"
+      newLink.setAttribute("class", "item-content item-link")
+      var itemInner = document.createElement("div")
+      itemInner.setAttribute("class", "item-inner")
+      var itemTitle = document.createElement("div")
+      itemTitle.setAttribute("class", "item-title")
+      itemTitle.innerHTML = subname
+      itemInner.appendChild(itemTitle)
+      newLink.appendChild(itemInner)
+      newItem.appendChild(newLink)
+      var newItemcontent = document.createElement("div")
+      newItemcontent.setAttribute("class", "accordion-item-content")
+      var card = document.createElement("div")
+      card.setAttribute("class", "data-table card")
+      var contentblock = document.createElement("div")
+      contentblock.setAttribute("class", "content-block")
+      var table = document.createElement("table")
+      var thead = document.createElement("thead")
+      var tbody = document.createElement("tbody")
+      tbody.setAttribute("id", "+subname")
+      var tr = document.createElement("tr")
+      tr.innerHTML = "<th class='label-cell'>Exam</th><th class='numeric-cell'>Grade</th>"
+      thead.appendChild(tr)
+      table.appendChild(thead)
+      table.appendChild(tbody)
+      card.appendChild(table)
+      contentblock.appendChild(card)
+      newItemcontent.appendChild(contentblock)
+      newItem.appendChild(newItemcontent)
+      subjectslist.insertBefore(newItem, subjectslist.childNodes[0])
 
   });
 
 
-  refSubjects.on('child_removed', snap => {
+  refSubject.on('child_removed', snap => {
     var subjectToRemove = document.getElementById(snap.key)
     console.log(snap.key)
     console.log(subjectToRemove.innerHTML+" has been deleted")
     subjectToRemove.remove()
+
   });
 
+  refGrade.on('child_added', snap =>{
+    var Grade = snap.val()
+    var grade = snap.val().grade
+    var name  = snap.val().name
+    var tbody = document.getElementById("+subname")
+    var th = document.createElement("th")
+    th.setAttribute("class", "label-cell")
+    var th2 = document.createElement("th")
+    th2.setAttribute("class", "numeric-cell")
+    th.innerHTML = name
+    th2.innerHTML = grade
+    var tr = document.createElement("tr")
+    tr.appendChild(th)
+    tr.appendChild(th2)
+    tbody.appendChild(tr)
 
+
+  })
 
 
 
