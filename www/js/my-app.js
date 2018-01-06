@@ -37,9 +37,9 @@ firebase.auth().onAuthStateChanged(function(user){
 
   // Create references
   var db = firebase.database().ref()
-  window.refUser = db.child(user.displayName)
+  var refUser = db.child(user.displayName)
   window.refSubject = refUser.child("Subjects")
-  var refGrade = refUser.child('Grades')
+  window.refGrade = refUser.child('Grades')
 
 
   // ---------------------------------
@@ -81,7 +81,7 @@ firebase.auth().onAuthStateChanged(function(user){
 
   $$('.form-to-data').on('click', function(){
     var formData = plannix.formToData('#my-form');
-    refGrade.push(formData)
+    refGrade.child(window.subID).push(formData)
   });
 
 
@@ -90,10 +90,8 @@ firebase.auth().onAuthStateChanged(function(user){
   // Sync list changes
   refSubject.on('child_added', snap => {
 
-    var rand = palette[Math.floor(Math.random() * palette.length)]
     var Subject = snap.val()
     var subname  = Object.values(Subject)
-
 
       // CREATE LINK with Delete Swipeout
       var newsubject = document.createElement("li")
@@ -132,12 +130,11 @@ firebase.auth().onAuthStateChanged(function(user){
       subjectToRemove.remove()
 
     });
-
-    refGrade.on('child_added', snap => {
-      var grade = snap.val().grade
-      var name = snap.val().name
-      console.log(name)
-      console.log(grade)
-    })
-
+    function loadsubs(){
+      window.refGradespec.on('child_added', snap => {
+        var Grade = snap.val()
+        var gradeinfo  = Object.values(Grade).grade
+      })
+    }
+    
 });

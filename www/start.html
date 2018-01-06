@@ -15,16 +15,16 @@
     <link rel="stylesheet" href="css/my-app.css">
 	  <link rel="stylesheet" href="css/framework7-icons.css">
     <title>PlanniX</title>
-    <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
     <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyDkWuwARVtizDkF1NY1XEkLqtNubRNhyIg",
-      authDomain: "planix-app.firebaseapp.com",
-      databaseURL: "https://planix-app.firebaseio.com",
-      projectId: "planix-app",
-      storageBucket: "",
-      messagingSenderId: "263368692985"
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAUgogBr8QSHCFVMUZ5Nj4R4FHYMJJE7v4",
+        authDomain: "plannix-app.firebaseapp.com",
+        databaseURL: "https://plannix-app.firebaseio.com",
+        projectId: "plannix-app",
+        storageBucket: "",
+        messagingSenderId: "252829861131"
       };
       firebase.initializeApp(config);
     </script>
@@ -54,11 +54,14 @@
                   var title2 = document.getElementById("title2")
                   var title = document.getElementById("title")
                   title.innerHTML = clicked_id
-                  title2.innerHTML = "Add grade to "+clicked_id
+                  window.subID = clicked_id
+                  title2.innerHTML = "Add grade to "+ clicked_id
+                  window.refGradespec = window.refGrade.child(clicked_id)
+                  loadsubs()
                 }
                 function del(clicked_id){
                   plannix.alert("deleted: "+clicked_id)
-                  window.refUser.child("Subjects").remove(clicked_id)
+                  window.refSubject.remove(clicked_id)
                 }
                 </script>
             </div>
@@ -79,8 +82,6 @@
 
             <div class="content-block-title" id="title"></div>
               <div class="list-block inset accordion-list">
-                  <ul id="gradeslist">
-                  </ul>
                   <div class="data-table data-table-init card">
                     <!-- Card header -->
                     <div class="card-header">
@@ -121,14 +122,6 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td class="checkbox-cell">
-                              <label class="checkbox">
-                                <input type="checkbox">
-                                <i class="icon-checkbox"></i>
-                              </label>
-                            </td>
-                            <td class="label-cell">Frozen yogurt</td>
-                            <td class="numeric-cell">159</td>
                           </tr>
                         </tbody>
                       </table>
@@ -162,7 +155,16 @@
                     <div class="item-content">
                       <div class="item-inner">
                         <div class="item-input">
-                          <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46' name="grade" placeholder="Your grade">
+                          <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46' name="grade" placeholder="Grade">
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-input">
+                          <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46' name="weight" placeholder="Weight">
                         </div>
                       </div>
                     </div>
