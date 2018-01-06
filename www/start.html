@@ -1,233 +1,194 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <!-- Color theme for statusbar -->
-  <meta name="theme-color" content="#2196f3">    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
     <!-- Path to Framework7 Library CSS-->
     <link rel="stylesheet" href="css/framework7.ios.min.css">
     <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
     <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="css/my-app.css">
 	  <link rel="stylesheet" href="css/framework7-icons.css">
-    <title>Planix</title>
-
-    <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+    <title>PlanniX</title>
+    <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
     <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyDkWuwARVtizDkF1NY1XEkLqtNubRNhyIg",
-        authDomain: "planix-app.firebaseapp.com",
-        databaseURL: "https://planix-app.firebaseio.com",
-        projectId: "planix-app",
-        storageBucket: "",
-        messagingSenderId: "263368692985"
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDkWuwARVtizDkF1NY1XEkLqtNubRNhyIg",
+      authDomain: "planix-app.firebaseapp.com",
+      databaseURL: "https://planix-app.firebaseio.com",
+      projectId: "planix-app",
+      storageBucket: "",
+      messagingSenderId: "263368692985"
       };
       firebase.initializeApp(config);
     </script>
+
 </head>
+
 <body>
-
-<div class="views">
-	<div class="view view-main">
-		<div class="pages navbar-fixed toolbar-fixed">
-			<div class="page" data-page="index">
-
-        <!-- HEADER -->
+  <div class="views">
+    <div class="view view-main">
+      <div class="pages navbar-fixed">
+        <!-- Top Navbar-->
         <div class="navbar">
-					<div class="navbar-inner">
-            <div class="left"></div>
-            <div class="center">PlaniX</div>
-            <div class="right">
-              <a href="#settings" class="open-panel">Settings</a>
-            </div>
-              <div class="subnavbar">
-                <div class="buttons-row">
-                  <a href="#news" class="button tab-link active">News</a>
-                  <a href="#grades" class="button tab-link">Grades</a>
-                <!--  <a href="#tt" class="button tab-link">Timetable</a> -->
-                </div>
-              </div>
-  					</div>
-  				</div>
-
-      <div class="pages navbar-through">
-         <div data-page="home" class="page with-subnavbar">
-            <div class="page-content hide-bars-on-scroll">
-              <div class="tabs">
-
-                <!-- NEWS Tab -->
-                <div id="news" class="tab active">
-                  <div class="content-block">
-                    <div class="content-block-title">Recent News</div>
-        						<div class="content-block inset">
-        							<div class="content-block-inner">
-        							<p id="newstitle">European Girls‘ Mathematics Olympiade</p>
-        							<p>Am vergangenen Wochenende rechneten 168 Mittelschülerinnen aus 43 Nationen an der European Girls‘ Mathematical Olympiad um Medaillenplätze. An der Organisatorin dieses Anlasses beteiligt war unter anderen Viviane Kehl, Mathematik-Studentin an der ETH Zürich und ehemalige MNG Schülerin.
-        								Zwei aktuelle MNG Schülerinnen wurden an der Schlusszeremonie an der Universität Zürich ausgezeichnet: Ivana Klasovita darf sich über eine Bronzemedaille freuen, ihre Zwillingsschwester gewann eine Honorable Mention. Wir als Schule sind stolz über diese tollen Leistungen und gratulieren herzlich!
-        								</p>
-        							</div>
-        						</div>
-                    <div id="sign-in-status"></div>
-                    <div id="sign-in"></div>
-                    <div id="account-details"></div>
-        						<div class="content-block inset">
-        							<div class="content-block-inner">
-        								<p id="newstitle">Premiere des AG Theater Projekts 2017 am 1. April</p>
-        								<p>Vom 1. bis zum 12. April finden in der Aula die Aufführungen der diesjährigen AG Theater-Produktion SCHWÄRMEN statt; ein Stück, das die Jungautorin Cromme eigens für die AG Theater geschrieben hat. Die unterhaltsame Szenenabfolge mit Text, Musik, Gesang, Bewegung und Tanz handelt von einer Klassenfahrt nach Italien, die es in sich hat...								</p>
-        								<a href="docs/theat17.pdf">Flyer</a>
-        							</div>
-        						</div>
-                  </div>
-                </div>
-
-                <!-- GRADES Tab -->
-                <div id="grades" class="tab">
-                  <div class="content-block">
-                    <div class="content-block-title">Semesters</div>
-                      <div class="list-block inset">
-                        <form>
-                          <ul id="semesterlist">
-                            <li>
-                              <a href="#semtest" id="demoSem" class="item-link list-button">HS 2017</a>
-                            </li>
-                          </ul>
-                        </form>
-                      </div>
-                        <a id="addsembtn" href="#" class="prompt-newsem button button-big button-round active">Add Semester</a>
-                    </div>
-                    <script>
-                    function loadPage(link, semname) {
-                      //CREATE PAGE
-                      var newPage = document.createElement("div")
-                      newPage.setAttribute("class", "page cached")
-                      newPage.setAttribute("datapage", semname)
-                      newPage.setAttribute("id", semname)
-                      var itm   = document.getElementById("demopage").innerHTML;
-                      newPage.innerHTML = itm
-                      var container = document.getElementById("gradepagecontainer")
-                      container.insertBefore(newPage, container.childNodes[0]);
-                      mainView.router.loadContent(newPage);
-                    }
-                    </script>
-                  <div id=gradepagecontainer>
-                  </div>
-                </div>
-                  <!-- Picker -->
-                    <div class="picker-modal picker-1">
-                      <div class="toolbar">
-                        <div class="toolbar-inner">
-                          <div class="left"><a href="#" class="close-picker">Cancel</a></div>
-                          <div class="right"><a href="#" id="newsemadd" onclick="createSemester()" class="button">Done</a></div>
-                        </div>
-                      </div>
-                      <div class="picker-modal-inner">
-                        <div class="content-block">
-                          <div class="page-content">
-                            <div class="list-block inset">
-                              <ul>
-                                <li>
-                                  <div class="item-content">
-                                    <div class="item-media"></div>
-                                      <div class="item-inner">
-                                        <div class="item-input">
-                                          <input type="text" placeholder="Name the semester here" id="userInput">
-                                        </div>
-                                      </div>
-                                  </div>
-                                </li>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-
-        <!-- DEMOPAGE GRADES-->
-        <div class="page cached" datapage="semtest "id="demopage">
-          <!-- HEADER -->
-          <div class="navbar">
-            <div class="navbar-inner">
-              <div class="left back-link">
-                <a href="#" class="back link">Back
-                </a>
-              </div>
-              <div class="center">PlaniX</div>
-              <div class="right"></div>
-              </div>
-            </div>
-          <div class="page-content hide-bars-on-scroll">
-            <div class="accordion-list">
-              <div class="content-block-title">Subjects</div>
-                <div class="list-block inset accordion-list">
-                  <ul>
-
-                  <li class="accordion-item" id="D">
-                    <a href="#" class="item-content item-link">
-                      <div class="item-inner">
-                        <div class="item-title">Deutsch</div>
-                      </div>
-                    </a>
-                    <div class="accordion-item-content">
-                    <div class="content-block">
-                      <div class="data-table card ">
-                        <table>
-                          <thead>
-                            <tr>
-                              <th class="label-cell">Exam</th>
-                              <th class="numeric-cell">Grade</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td class="label-cell">Kurztest</td>
-                              <td class="numeric-cell">4.7</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                    </div>
-                  </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-50">
-                  <a href="#"  onClick="newSubject()" class="button button-big button-round active">New Subject</a>
-                  <script>
-                    function newSubject(){
-                      jsnewSubject();
-                    }
-                  </script>
-                </div>
-                <div class="col-50">
-                  <a href="#" class="prompt-newsem button button-big button-round active">Log In</a>
-                </div>
-              </div>
-
+          <div class="navbar-inner">
+            <div class="center">PlanniX</div>
           </div>
         </div>
-			 </div>
-		  </div>
+        <!-- /End of Top Navbar-->
+        <div data-page="start" class="page no-swipeback">
+          <div class="page-content">
+            <div class="content-block">
+              <div class="content-block-title">Subjects</div>
+                <div class="list-block inset">
+                  <ul id="subjectlist"></ul>
+                </div>
+                <script>
+                function nav(clicked_id){
+                  var title2 = document.getElementById("title2")
+                  var title = document.getElementById("title")
+                  title.innerHTML = clicked_id
+                  title2.innerHTML = "Add grade to "+clicked_id
+                }
+                function del(clicked_id){
+                  plannix.alert("deleted: "+clicked_id)
+                  window.refUser.child("Subjects").remove(clicked_id)
+                }
+                </script>
+            </div>
+            <a href="#" id="addsembtn" class="floating-button prompt-newsub" href="#">
+              <i class="f7-icons">add</i>
+            </a>
+          </div>
+        </div>
 
-	   </div>
+
+        <div class="page cached" data-page="grades" id="gradepage">
+          <div class="page-content">
+
+          <!-- Floating Action Button -->
+          <a href="#" data-popup=".popup-newgrade"class="open-popup floating-button color-pink">
+            <i class="f7-icons">add</i>
+          </a>
+
+            <div class="content-block-title" id="title"></div>
+              <div class="list-block inset accordion-list">
+                  <ul id="gradeslist">
+                  </ul>
+                  <div class="data-table data-table-init card">
+                    <!-- Card header -->
+                    <div class="card-header">
+                      <!-- Default table header -->
+                      <div class="data-table-header">
+                        <!-- Default table title -->
+                        <div class="data-table-title"></div>
+                        <!-- Default table actions -->
+                        <div class="data-table-actions">
+                        </div>
+                      </div>
+                      <!-- Selected table header -->
+                      <div class="data-table-header-selected">
+                        <!-- Selected table title -->
+                        <div class="data-table-title-selected"><span class="data-table-selected-count"></span> items selected</div>
+                        <!-- Selected table actions -->
+                        <div class="data-table-actions">
+                          <a class="link icon-only">
+                            <i class="icon f7-icons">trash</i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-content">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th class="checkbox-cell">
+                              <label class="checkbox">
+                                <input type="checkbox">
+                                <i class="icon-checkbox"></i>
+                              </label>
+                            </th>
+                            <th class="label-cell">Description</th>
+                            <th class="numeric-cell">Grade</th>
+                            <th class="numeric-cell">Weight</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="checkbox-cell">
+                              <label class="checkbox">
+                                <input type="checkbox">
+                                <i class="icon-checkbox"></i>
+                              </label>
+                            </td>
+                            <td class="label-cell">Frozen yogurt</td>
+                            <td class="numeric-cell">159</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <script>
+
+                  </script>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- About Popup -->
+          <div class="popup popup-newgrade">
+            <div class="content-block">
+              <div id="title2" class="content-block-title">You did not chose a subject!</div>
+              <form id="my-form" class="list-block">
+                <ul>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-input">
+                          <input type="text" name="name" placeholder="Exam description">
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-input">
+                          <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46' name="grade" placeholder="Your grade">
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </form>
+              <div class="row">
+                <div class="col-50">
+                  <a href="#" class="close-popup button button-big active">Cancel</a>
+                </div>
+                <div class="col-50">
+                  <a href="#" class="form-to-data close-popup button button-big button-green active">Submit</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
     </div>
   </div>
-</div>
-
 
     <!-- Path to Framework7 Library JS-->
     <script type="text/javascript" src="js/framework7.min.js"></script>
     <!-- Path to your app js-->
-    <script type="text/javascript" src="js/my-app.js"></script>
-    <script type="text/javascript" src="js/firebase.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
     <script type="text/javascript">
         app.initialize();
     </script>
