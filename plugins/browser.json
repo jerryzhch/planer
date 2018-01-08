@@ -1,0 +1,42 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.plannixapp.zuerich"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.plannixapp.zuerich"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.plannixapp.zuerich"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.plannixapp.zuerich"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.plannixapp.zuerich"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.plannixapp.zuerich"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.plannixapp.zuerich"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.plannixapp.zuerich"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.plannixapp.zuerich"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.plannixapp.zuerich"
+        }
+    },
+    "dependent_plugins": {}
+}
