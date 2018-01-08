@@ -12,7 +12,7 @@ var plannix = new Framework7({
   onAjaxComplete: function (xhr) {
       plannix.hideIndicator();
   },
-  swipeBackPage: true
+  swipeBackPage: false
 
 });
 
@@ -24,11 +24,13 @@ var mainView = plannix.addView('.view-main', {
     domCache: true
 });
 
+
 // Color palette
 var palette = ['92B558', '79C753', '66ff00', 'C48F65', '98B4D4', 'FAE03C', 'DD4124', '9C9A40', '4F84C4', 'D2691E', '55B4B0', '95DEE3']
 // Get elements
 var subjectlist = document.getElementById("subjectlist");
 var btn = document.getElementById("addsubject")
+
 
 firebase.auth().onAuthStateChanged(function(user){
 
@@ -43,12 +45,11 @@ firebase.auth().onAuthStateChanged(function(user){
 
 
   // ---------------------------------
+  // Notify user which email account he is using
       if (user){
         var email, uid;
         if (user!= null){
-          displayName = user.displayName
           email = user.email
-          uid = user.uid
           plannix.addNotification({
             title: 'PlanniX - Notification',
             message: 'Welcome to plannix. You are logged in as '+email+'.'
@@ -61,27 +62,33 @@ firebase.auth().onAuthStateChanged(function(user){
 
   //-----------------------------------------------
 
-    // PROMPT New Subject
-    $$('.prompt-newsub').on('click', function () {
-        plannix.prompt('New Subject', 'PlanniX', function (userInput) {
-          if (userInput == ""){
-            plannix.alert('An empty input is not allowed')
+  // PROMPT New Subject
+  $$('.prompt-newsub').on('click', function () {
+      plannix.prompt('New Subject', 'PlanniX', function (userInput) {
+        if (userInput == ""){
+          plannix.alert('An empty input is not allowed')
+        }
+        else{
+          // New Firebase Database Entry
+          var sub = {
+            SubjectName: userInput
           }
-          else{
-            // New Firebase Database Entry
-            var sub = {
-              SubjectName: userInput
+              refSubject.push(sub)
             }
-                refSubject.push(sub)
-              }
-          })
+        })
 
-        });
+      });
 
-
+// Push grade information to Firebase
   $$('.form-to-data').on('click', function(){
     var formData = plannix.formToData('#my-form');
     refGrade.child(window.subID).push(formData)
+  });
+
+// On router back to Subject page, empty Grade list
+  $$('.back').on('click', function(){
+    var insertGrade = document.getElementById("insertGrade")
+    insertGrade.innerHTML = ""
   });
 
 
@@ -130,11 +137,5 @@ firebase.auth().onAuthStateChanged(function(user){
       subjectToRemove.remove()
 
     });
-    function loadsubs(){
-      window.refGradespec.on('child_added', snap => {
-        var Grade = snap.val()
-        var gradeinfo  = Object.values(Grade).grade
-      })
-    }
-    
+
 });

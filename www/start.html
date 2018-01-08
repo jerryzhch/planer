@@ -23,7 +23,7 @@
         authDomain: "plannix-app.firebaseapp.com",
         databaseURL: "https://plannix-app.firebaseio.com",
         projectId: "plannix-app",
-        storageBucket: "",
+        storageBucket: "plannix-app.appspot.com",
         messagingSenderId: "252829861131"
       };
       firebase.initializeApp(config);
@@ -50,6 +50,10 @@
                   <ul id="subjectlist"></ul>
                 </div>
                 <script>
+                // Used to Calculate Aveage Grade
+                var i = 0
+                var j = 0
+                // Get the Subject link's name
                 function nav(clicked_id){
                   var title2 = document.getElementById("title2")
                   var title = document.getElementById("title")
@@ -57,8 +61,66 @@
                   window.subID = clicked_id
                   title2.innerHTML = "Add grade to "+ clicked_id
                   window.refGradespec = window.refGrade.child(clicked_id)
-                  loadsubs()
+                  // Get gradelist
+                  var insertGrade = document.getElementById("insertGrade")
+                  insertGrade.innerHTML = ""
+                  window.refGradespec.on('child_added', snap => {
+
+
+                    // Get the 3 child for each grade entered
+                    var Grade = snap.val()
+                    var name  = Grade.name
+                    var grade  = Grade.grade
+                    var weight  = Grade.weight
+
+                    // Create new element with retrieved vlaues
+                    var newCell = document.createElement("tr")
+                    newCell.setAttribute("id", name)
+                    var newName = document.createElement("td")
+                    newName.setAttribute("class", "label-cell" )
+                    newName.innerHTML = name
+                    var newGrade = document.createElement("td")
+                    newGrade.setAttribute("class", "numeric-cell")
+                    newGrade.innerHTML = grade
+                    var newWeight = document.createElement("td")
+                    newWeight.setAttribute("class", "numeric-cell")
+                    newWeight.innerHTML = weight
+
+                    // Merge created Grade
+                    newCell.appendChild(newName)
+                    newCell.appendChild(newGrade)
+                    newCell.appendChild(newWeight)
+
+                    // Insert Grade
+                    insertGrade.insertBefore(newCell, insertGrade.childNodes[0])
+
+                    // Calculate Weighted Grade
+                    var weightedGrade = (grade*weight)
+                    i = (i+weightedGrade)
+                    j = (j+(weight*1))
+                    z = 0
+                    var z = (i/j)
+
+                    // Round Number to 3 decimals
+                    function round(rounded_grade, n_stelle) {
+                      rounded_grade = (Math.round(rounded_grade * n_stelle) / n_stelle);
+                      return rounded_grade;
+                    }
+                    // Get Title of Card
+                    var averageArea = document.getElementById("averageArea")
+
+                    // Change font according to grade
+                    if (round(z,1000)<4.000){
+                      averageArea.innerHTML = "<font color='red'>"+"&#216;"+round(z,1000)
+                    }
+                    else{
+                      averageArea.innerHTML = "<font color='green'>"+"&#216;"+round(z,1000)
+                    }
+
+
+                  })
                 }
+                // Delete Listener TODO: Get it to work from inside the app; not from Firebase console
                 function del(clicked_id){
                   plannix.alert("deleted: "+clicked_id)
                   window.refSubject.remove(clicked_id)
@@ -72,9 +134,16 @@
         </div>
 
 
-        <div class="page cached" data-page="grades" id="gradepage">
+        <div class="page cached" data-page="grades" id="gradepage" onload="loadsubs()">
           <div class="page-content">
-
+            <!-- Top Navbar-->
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="left">
+                  <a href="#start" class="back">Back to Subjects</a>
+                </div>
+              </div>
+            </div>
           <!-- Floating Action Button -->
           <a href="#" data-popup=".popup-newgrade"class="open-popup floating-button color-pink">
             <i class="f7-icons">add</i>
@@ -88,7 +157,7 @@
                       <!-- Default table header -->
                       <div class="data-table-header">
                         <!-- Default table title -->
-                        <div class="data-table-title"></div>
+                        <div class="data-table-title" id="averageArea">Average</div>
                         <!-- Default table actions -->
                         <div class="data-table-actions">
                         </div>
@@ -107,22 +176,14 @@
                     </div>
                     <div class="card-content">
                       <table>
-                        <thead>
+                        <thead> <!-- KOPFZEILE -->
                           <tr>
-                            <th class="checkbox-cell">
-                              <label class="checkbox">
-                                <input type="checkbox">
-                                <i class="icon-checkbox"></i>
-                              </label>
-                            </th>
                             <th class="label-cell">Description</th>
                             <th class="numeric-cell">Grade</th>
                             <th class="numeric-cell">Weight</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                          </tr>
+                        <tbody id="insertGrade"> <!-- NOTENLISTE -->
                         </tbody>
                       </table>
                     </div>
@@ -178,6 +239,8 @@
                 <div class="col-50">
                   <a href="#" class="form-to-data close-popup button button-big button-green active">Submit</a>
                 </div>
+                <script>
+                </script>
               </div>
             </div>
           </div>
