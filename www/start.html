@@ -64,8 +64,8 @@
                   // Get gradelist
                   var insertGrade = document.getElementById("insertGrade")
                   insertGrade.innerHTML = ""
-                  window.refGradespec.on('child_added', snap => {
 
+                  window.refGradespec.on('child_added', snap => {
 
                     // Get the 3 child for each grade entered
                     var Grade = snap.val()
@@ -119,6 +119,7 @@
 
 
                   })
+                  
                 }
                 // Delete Listener TODO: Get it to work from inside the app; not from Firebase console
                 function del(clicked_id){
