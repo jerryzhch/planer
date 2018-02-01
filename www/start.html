@@ -119,7 +119,7 @@
 
 
                   })
-                  
+
                 }
                 // Delete Listener TODO: Get it to work from inside the app; not from Firebase console
                 function del(clicked_id){
@@ -141,7 +141,13 @@
             <div class="navbar">
               <div class="navbar-inner">
                 <div class="left">
-                  <a href="#start" class="back">Back to Subjects</a>
+                  <a href="#start" onClick="reset()"class="back">Back to Subjects</a>
+                  <script>
+                  function reset(){
+                    var averageArea = document.getElementById("averageArea")
+                    averageArea.innerHTML = "Average"
+                  }
+                  </script>
                 </div>
               </div>
             </div>
